@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Verdure:%20Innovating%20Agriculture/static/css/main.f55719a7.css",
-    "main.js": "/Verdure:%20Innovating%20Agriculture/static/js/main.2d1ee7e7.js",
+    "main.js": "/Verdure:%20Innovating%20Agriculture/static/js/main.13d7ef86.js",
     "static/js/389.9c54a602.chunk.js": "/Verdure:%20Innovating%20Agriculture/static/js/389.9c54a602.chunk.js",
     "static/js/453.629f6c9a.chunk.js": "/Verdure:%20Innovating%20Agriculture/static/js/453.629f6c9a.chunk.js",
     "static/js/239.2f034b9b.chunk.js": "/Verdure:%20Innovating%20Agriculture/static/js/239.2f034b9b.chunk.js",
@@ -42,7 +42,7 @@
     "static/media/chart-line-up (1).png": "/Verdure:%20Innovating%20Agriculture/static/media/chart-line-up (1).d073c0b649cc766ebfdc.png",
     "index.html": "/Verdure:%20Innovating%20Agriculture/index.html",
     "main.f55719a7.css.map": "/Verdure:%20Innovating%20Agriculture/static/css/main.f55719a7.css.map",
-    "main.2d1ee7e7.js.map": "/Verdure:%20Innovating%20Agriculture/static/js/main.2d1ee7e7.js.map",
+    "main.13d7ef86.js.map": "/Verdure:%20Innovating%20Agriculture/static/js/main.13d7ef86.js.map",
     "389.9c54a602.chunk.js.map": "/Verdure:%20Innovating%20Agriculture/static/js/389.9c54a602.chunk.js.map",
     "453.629f6c9a.chunk.js.map": "/Verdure:%20Innovating%20Agriculture/static/js/453.629f6c9a.chunk.js.map",
     "239.2f034b9b.chunk.js.map": "/Verdure:%20Innovating%20Agriculture/static/js/239.2f034b9b.chunk.js.map",
@@ -51,6 +51,6 @@
   },
   "entrypoints": [
     "static/css/main.f55719a7.css",
-    "static/js/main.2d1ee7e7.js"
+    "static/js/main.13d7ef86.js"
   ]
 }
