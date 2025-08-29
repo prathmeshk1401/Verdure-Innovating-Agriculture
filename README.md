@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# Verdure-A-Smart-Agricultural-Assistant-for-Crop-Monitoring-and-Care-
+Verdure is a web-based platform designed to assist farmers and agricultural  enthusiasts in managing crop cycles, tracking harvests, and accessing crop care insights. The  project was born out of a desire to blend technology with agriculture, making farming more  data-aware and efficient. 
+>>>>>>> 7813003e74177a9166a78519593d2e55ced3c66d
