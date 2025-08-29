@@ -1,0 +1,12 @@
+/* Footer */
+footer {
+    text-align: center;
+    position: absolute;
+    left:0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    background-color: #d4edda;
+    font-size: 0.9rem;
+    color: #555;
+}

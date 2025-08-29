@@ -1,0 +1,35 @@
+/* Example: Scoped Privacy Policy styles using CSS Modules */
+.privacyContainer {
+    max-width: 900px;
+    margin: 100px auto 40px auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Inter', sans-serif;
+    color: #222;
+}
+
+.privacyTitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #034f1a;
+}
+
+.privacySection {
+    margin-bottom: 32px;
+}
+
+.privacySection h2 {
+    font-size: 1.3rem;
+    color: #034f1a;
+    margin-bottom: 10px;
+}
+
+.privacySection p {
+    font-size: 1.05rem;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
