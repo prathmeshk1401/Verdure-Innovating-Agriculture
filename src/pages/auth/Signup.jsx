@@ -1,149 +1,150 @@
 import React, { useState } from "react";
 import styles from "./styles/Signup.module.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-    const [phone, setPhone] = useState("");
-    const [phoneMessage, setPhoneMessage] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordMessage, setPasswordMessage] = useState("");
+    const navigate = useNavigate();
+    const [showPopup, setShowPopup] = useState(false);
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        password: "",
+    });
     const [termsChecked, setTermsChecked] = useState(false);
     const [termsError, setTermsError] = useState(false);
+    const [passwordMessage, setPasswordMessage] = useState("");
 
-    // Live password validation example
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
     const showLiveValidation = (value) => {
-        setPassword(value);
+        setFormData({ ...formData, password: value });
         if (value.length < 6) {
-            setPasswordMessage("Password must be at least 6 characters.");
+            setPasswordMessage("Password must be at least 6 characters");
         } else {
             setPasswordMessage("");
         }
     };
 
-    // Phone validation example
-    const handlePhoneChange = (e) => {
-        const value = e.target.value;
-        setPhone(value);
-        if (!/^\d{10}$/.test(value)) {
-            setPhoneMessage("Enter a valid 10-digit phone number.");
-        } else {
-            setPhoneMessage("");
-        }
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!termsChecked) {
             setTermsError(true);
             return;
         }
-        setTermsError(false);
-        // Handle signup logic here
+
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+            console.log(data); // "User registered successfully"
+            if (res.ok) {
+                localStorage.setItem("verdure_token", data.token);
+                setShowPopup(true);
+                setTimeout(() => {
+                    setShowPopup(true);
+                    navigate("/user-dashboard/Dashboard");
+                }, 2000);
+            } else {
+                alert(data.msg);
+            }
+
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
-        <>
-            <div className={styles.signupContainer}>
-                <div className={styles.signupForm}>
-                    <h2 className={styles.signupTitle}>Join VERDURE</h2>
-                    <form id="signup-form" onSubmit={handleSubmit} autoComplete="off">
-                        <div className={styles.inputGroup}>
-                            <input className={styles.signupInput} type="text" placeholder="Full Name" required />
-                        </div>
-                        <div className={styles.inputGroup}>
-                            <input
-                                className={styles.signupInput}
-                                type="tel"
-                                placeholder="Phone Number"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                value={phone}
-                                onChange={handlePhoneChange}
-                                required
-                            />
-                            <span id="phoneMessage" className={styles.error}>
-                                {phoneMessage}
-                            </span>
-                        </div>
-                        <div className={styles.inputGroup}>
-                            <input className={styles.signupInput} type="email" placeholder="Email" required />
-                        </div>
-                        <div className={styles.inputGroup}>
-                            <input
-                                className={styles.signupInput}
-                                type="password"
-                                placeholder="Password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => showLiveValidation(e.target.value)}
-                                required
-                            />
-                            <span id="message" className={styles.error}>
-                                {passwordMessage}
-                            </span>
-                        </div>
-                        <div className={styles.termsSection}>
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                checked={termsChecked}
-                                onChange={(e) => setTermsChecked(e.target.checked)}
-                                required
-                            />
-                            <label htmlFor="terms">
-                                I agree to the{" "}
-                                <a href="/terms" target="_blank" rel="noopener noreferrer">
-                                    Terms of Service
-                                </a>
-                            </label>
-                        </div>
-                        {termsError && (
-                            <div className={styles.errorMessage} id="termsError">
-                                You must agree to the Terms of Service
-                            </div>
-                        )}
-                        <button type="submit" className={styles.signupButton}>Sign Up</button>
-                        <button className={styles.googleBtn} type="button">
-                            <img
-                                src="https://www.svgrepo.com/show/355037/google.svg"
-                                alt="Google Logo"
-                            />
-                            Continue with Google
-                        </button>
-                        <div className={styles.toggleForm}>
-                            Already have an account? <a href="/login">Sign In</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
-            {/* FontAwesome CDN */}
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            />
-            <script
-                src="https://kit.fontawesome.com/b48bac47ea.js"
-                crossOrigin="anonymous"
-            ></script>
-            {/* Multilingual support */}
-            <script>
-                {`
-                    window.gtranslateSettings = {
-                        "default_language": "en",
-                        "native_language_names": true,
-                        "detect_browser_language": true,
-                        "languages": ["en", "hi", "mr", "ta", "te"],
-                        "wrapper_selector": ".gtranslate_wrapper",
-                        "flag_size": 16,
-                        "switcher_horizontal_position": "inline",
-                        "switcher_open_direction": "top",
-                        "flag_style": "3d"
-                    }
-                `}
-            </script>
-            <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
-        </>
+        <div className={styles.signupContainer}>
+            {showPopup && (
+                <div className={styles.popup}>
+                    Welcome to Verdure! Your registration was a successfull.🌿
+                </div>
+            )}
+            <div className={styles.signupForm}>
+                <h2 className={styles.signupTitle}>Join VERDURE</h2>
+                <form id="signup-form" onSubmit={handleSubmit} autoComplete="off">
+                    <div className={styles.inputGroup}>
+                        <input
+                            className={styles.signupInput}
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            placeholder="Full Name"
+                            required
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <input
+                            className={styles.signupInput}
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            required
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <input
+                            className={styles.signupInput}
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={(e) => showLiveValidation(e.target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                        <span id="message" className={styles.error}>
+                            {passwordMessage}
+                        </span>
+                    </div>
+                    <div className={styles.termsSection}>
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            checked={termsChecked}
+                            onChange={(e) => {
+                                setTermsChecked(e.target.checked);
+                                setTermsError(false);
+                            }}
+                            required
+                        />
+                        <label htmlFor="terms">
+                            I agree to the{" "}
+                            <a href="/terms" target="_blank" rel="noopener noreferrer">
+                                Terms of Service
+                            </a>
+                        </label>
+                    </div>
+                    {termsError && (
+                        <div className={styles.errorMessage} id="termsError">
+                            You must agree to the Terms of Service
+                        </div>
+                    )}
+                    <button type="submit" className={styles.signupButton}>Sign Up</button>
+                    <button className={styles.googleBtn} type="button">
+                        <img
+                            src="https://www.svgrepo.com/show/355037/google.svg"
+                            alt="Google Logo"
+                        />
+                        Continue with Google
+                    </button>
+                    <div className={styles.toggleForm}>
+                        Already with Verdure? <Link to="/login">Sign in</Link>
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 };
 

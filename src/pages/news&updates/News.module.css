@@ -1,0 +1,185 @@
+/* News.module.css */
+
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #f8f9fa;
+    --text-color: #2c3e50;
+    --light-text-color: #6c757d;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+}
+
+.newsPage {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 1rem;
+}
+
+.newsContainer {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.newsStats {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.newsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.newsItem {
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px var(--shadow-color);
+}
+
+.newsItem:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    border-color: #2d5a3d;
+}
+
+.newsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.newsHeading {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.newsLink {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.newsLink:hover {
+    color: #2d5a3d;
+    text-decoration: underline;
+}
+
+.newsSummary {
+    font-size: 1rem;
+    color: var(--light-text-color);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.newsMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.newsSource, .newsDate {
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+    font-weight: 500;
+}
+
+/* Loading, Error, and No News States */
+.loading, .error, .noNews {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--secondary-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.retryBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.retryBtn:hover {
+    background: #2d5a3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 93, 31, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .newsPage {
+        padding: 1rem 0.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .newsItem {
+        padding: 1rem;
+    }
+
+    .newsHeading {
+        font-size: 1.2rem;
+    }
+}

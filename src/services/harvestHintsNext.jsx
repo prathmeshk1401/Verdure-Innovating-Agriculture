@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../assets/styles/GlobalPages.css";
+import Loader from "../components/Loader"; 
 
 const menuItems = [
     { label: "Harvesting Tips", section: "harvesting" },
@@ -14,7 +15,17 @@ const CropDetails = () => {
     const [activeSection, setActiveSection] = useState("harvesting");
     const [wikiData, setWikiData] = useState(null);
     const cropTitle = crop ? crop.charAt(0).toUpperCase() + crop.slice(1) : "Crop Name";
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        // Show loader only for first load
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1500); // adjust timing
+        return () => clearTimeout(timer);
+    }, []);
+
+    
     useEffect(() => {
         if (crop) {
             fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${crop}`)
@@ -22,6 +33,10 @@ const CropDetails = () => {
                 .then(data => setWikiData(data));
         }
     }, [crop]);
+
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <div className="harvestHintsNextContainer">

@@ -1,7 +1,8 @@
 import React from "react";
 
-    const Testimonials = () => (
-        <section className="testimonials" id="testimonials">
+const Testimonials = () => (
+    <section className="testimonials" id="testimonials">
+        <div className="testimonial-container">
             <h2>What Our Farmers Say</h2>
             <div className="testimonial-grid">
                 <div className="testimonial-item">
@@ -32,7 +33,9 @@ import React from "react";
                     </blockquote>
                 </div>
             </div>
-        </section>
-    );
+        </div >
+    </section>
 
-    export default Testimonials;
+);
+
+export default Testimonials;

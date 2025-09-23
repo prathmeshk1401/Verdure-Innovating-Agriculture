@@ -1,0 +1,338 @@
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #d7dbd9;
+    --text-color: #000000;
+    --light-text-color: #131212;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    color: #0d0e0d;
+    text-shadow: 0 0 20px #e1e1e1;
+}
+
+button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    /* Regular */
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button{
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all .25s ease;
+}
+
+.farmer-forum {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: transparent;
+    border-radius: var(--border-radius);
+    border: 2px solid #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    position: relative;
+    left: 10%;
+}
+
+.farmer-forum h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+
+header p {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #333;
+    margin: 0 0 24px;
+}
+
+.button-container {
+    align-self: center;
+    display:inline;
+    position: relative;
+    left: 32%;
+}
+
+.forum-container,
+.forum-categories,
+.discussions,
+.forum-statistics {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.button-container {
+    align-items: center;
+}
+
+.container,
+.forum-container {
+    /* margin-top: 40px; */
+    padding: 30px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 20px;
+}
+
+.forum-categories h2,
+.forum-statistics h2,
+.discussion h2 {
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    color: #1c3819;
+    margin-bottom: 16px;
+}
+
+.forum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+
+}
+
+.category-box {
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: transform .2s, background-color .25s;
+    background-color: #fff;
+}
+
+.category-box:hover {
+    transform: translateY(-4px);
+    background-color: #d8f3d2;
+}
+
+.community {
+    background-color: #e5f6e1;
+}
+
+.expert {
+    background-color: #fff5d7;
+}
+
+.cropcare {
+    background-color: #f9ebe7;
+}
+
+.harvest {
+    background-color: #e3f3e7;
+}
+
+.weather {
+    background-color: #e4edff;
+}
+
+.marketplace {
+    background-color: #f1e8fa;
+}
+
+.success {
+    background-color: #fff8dc;
+}
+
+.category-box h3, .farmer-vendor h3 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+}
+
+.category-box p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.category-box small {
+    color: #555;
+}
+
+.discussions .container {
+    margin: 0 auto;
+}
+
+.discussions h2, .farmer-vendor h2 {
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    margin-bottom: 14px;
+    padding-left: 4px;
+    color: #1c3819;
+}
+
+.discussion-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+    transition: transform .2s;
+}
+
+.discussion-box:hover {
+    transform: translateY(-3px);
+}
+
+.discussion-box h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    color: #1d472e;
+}
+
+.discussion-box p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.discussion-box span {
+    font-size: .85rem;
+    background-color: #eef5ee;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-right: 6px;
+    display: inline-block;
+    color: #366c2b;
+    margin-bottom: 10px;
+}
+
+.farmer-vendor .container{
+    margin: 0 auto;
+    width: 96%;
+}
+
+.vendor-card, .vendor-chat-window {
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: transform .2s, background-color .25s;
+    background-color: transparent;
+    margin: 10px;
+    border: 2px solid #fff;
+}
+
+.vendor-card:hover, .vendor-chat-window:hover {
+    transform: translateY(-4px);
+    background-color: #a6a7a6;
+}
+
+.received {
+    margin-bottom: 10px;
+}
+
+
+.icon {
+    height: 30px;
+    width: 30px;
+}
+
+.forum-statistics {
+    padding: 12px 12px 36px;
+}
+
+.forum-statistics h2 {
+    color: #1c3819;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.stats-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    gap: 14px;
+    background-color: #fff;
+}
+
+.stat-card:hover {
+    transition: .25s ease;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(14, 80, 59, 0.18);
+}
+
+.icon-wrap {
+    font-size: 1.4rem;
+}
+
+.text-group .label {
+    font-size: .95rem;
+    color: #3f3f3f;
+    margin: 0;
+}
+
+.text-group .value {
+    margin-top: 4px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.green-text {
+    color: #1c733a;
+}
+
+.yellow-text {
+    color: #a27615;
+}
+
+.brown-text {
+    color: #864b31;
+}
+
+.blue-text {
+    color: #2451d5;
+}

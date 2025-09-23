@@ -1,38 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/GlobalPages.css";
+import Loader from "../components/Loader";
 
 const CropCareReport = () => {
-    const [form, setForm] = useState({
-        ph: "",
-        n: "",
-        p: "",
-        k: "",
-    });
+    // 🔼 All hooks at the top level
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
+    const [form, setForm] = useState({ ph: "", n: "", p: "", k: "" });
     const [report, setReport] = useState("");
     const [showPDF, setShowPDF] = useState(false);
 
+    // 📦 Fetch data on mount
+    useEffect(() => {
+        const fetchDataFromAPI = async () => {
+            setLoading(true);
+            setTimeout(() => {
+                setData("Result from API");
+                setLoading(false);
+            }, 2000);
+        };
+        fetchDataFromAPI();
+    }, []);
+
+    // 📱 Menu toggle logic
+    useEffect(() => {
+        const toggle = document.getElementById("menuToggle");
+        const menu = document.getElementById("horizontalMenu");
+        if (toggle && menu) {
+            toggle.onclick = () => {
+                menu.classList.toggle("active");
+            };
+        }
+    }, []);
+
+    // ⏳ Show loader while fetching
+    if (loading) return <Loader />;
+
+    // 🧪 Form change handler
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
+    // 📄 Generate HTML report
     const generateReport = () => {
         const { ph, n, p, k } = form;
-        let output = `<h3>Soil Test Report</h3>`;
-        output += `<p><strong>Soil pH Level:</strong> ${ph}</p>`;
-        output += `<p><strong>Nitrogen (N):</strong> ${n} ppm</p>`;
-        output += `<p><strong>Phosphorus (P):</strong> ${p} ppm</p>`;
-        output += `<p><strong>Potassium (K):</strong> ${k} ppm</p>`;
-        output += `<p><strong>Recommendation:</strong> ${
+        const recommendation =
             ph < 6
                 ? "Soil is acidic. Consider liming."
                 : ph > 7.5
-                ? "Soil is alkaline. Add organic matter."
-                : "Soil pH is optimal."
-        }</p>`;
+                    ? "Soil is alkaline. Add organic matter."
+                    : "Soil pH is optimal.";
+
+        const output = `
+        <h3>Soil Test Report</h3>
+        <p><strong>Soil pH Level:</strong> ${ph}</p>
+        <p><strong>Nitrogen (N):</strong> ${n} ppm</p>
+        <p><strong>Phosphorus (P):</strong> ${p} ppm</p>
+        <p><strong>Potassium (K):</strong> ${k} ppm</p>
+        <p><strong>Recommendation:</strong> ${recommendation}</p>
+    `;
         setReport(output);
         setShowPDF(true);
     };
 
+    // 📥 Generate downloadable PDF
     const generatePDF = async () => {
         const { jsPDF } = await import("jspdf");
         const doc = new jsPDF();
@@ -44,20 +75,10 @@ const CropCareReport = () => {
         doc.save("SoilTestReport.pdf");
     };
 
+    // 📅 Book slot redirect
     const bookSlot = () => {
         window.location.href = "/book-slot";
     };
-
-    // Menu toggle logic (for mobile)
-    React.useEffect(() => {
-        const toggle = document.getElementById("menuToggle");
-        const menu = document.getElementById("horizontalMenu");
-        if (toggle && menu) {
-            toggle.onclick = () => {
-                menu.classList.toggle("active");
-            };
-        }
-    }, []);
 
     return (
         <div>

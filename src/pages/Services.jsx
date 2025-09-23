@@ -1,67 +1,68 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import images from "../utils/importImages";
 
 const services = [
     {
-        href: "/disease-detect", 
+        to: "/disease-detect", 
         img: "diseaseDetection.jpg",
-        alt: "diseaseDetection",
+        alt: "AI-based plant disease detection",
         title: "Disease Detection",
         desc: "Diagnose plant diseases with AI.",
     },
     {
-        href: "/cropCareReport",
+        to: "/cropCareReport",
         img: "cropcareReport.jpg",
-        alt: "cropcareReport",
+        alt: "Crop care expert guidance",
         title: "CropCare Report",
         desc: "Get expert help with soil, pests, and diseases.",
     },
     {
-        href: "/harvestHintsMain",
+        to: "/harvestHintsMain",
         img: "harvestHints.jpg",
-        alt: "harvestHints",
+        alt: "Personalized farming solutions",
         title: "Harvest Hints",
         desc: "Receive personalized farming solutions.",
     },
     {
-        href: "/newCropHarvest",
+        to: "/newCropHarvest",
         img: "harvestNewCrops.jpg",
-        alt: "harvestNewCrops",
+        alt: "Imported crop cultivation guidance",
         title: "New Crop Harvest",
-        desc: "Empower farmers to cultivate imported crops with personalized soil testing, expert advice, and step-by-step guides, ensuring optimal growth and increased income.",
+        desc: "Grow imported crops with custom soil tests, expert tips, and guided support for better yields.",
     },
     {
-        href: "/farmWisdom",
+        to: "/farmWisdom",
         img: "farmWisdom.jpg",
-        alt: "farmWisdom",
+        alt: "Agricultural knowledge library",
         title: "Farm Wisdom",
         desc: "Access a rich library of agricultural knowledge.",
     },
     {
-        href: "/farmerForum",
+        to: "/farmerForum",
         img: "farmerForum.jpg",
-        alt: "farmerForum",
+        alt: "Community forum for farmers",
         title: "Farmer Forum",
         desc: "Connect with fellow farmers and experts.",
     },
     {
-        href: "/agriMarket",
+        to: "/agriMarket",
         img: "agriMarket.jpg",
-        alt: "agriMarket",
+        alt: "Organic farming products marketplace",
         title: "Agri Market",
         desc: "Shop for organic farming products.",
     },
     {
-        href: "/cropTrade",
+        to: "/cropTrade",
         img: "cropTrade.jpg",
-        alt: "cropTrade",
+        alt: "Sell crops directly to consumers",
         title: "Crop Trade",
         desc: "Sell your crops directly to consumers and businesses.",
     },
     {
-        href: "/agroWeather",
+        to: "/agroWeather",
         img: "agroWeather.jpg",
-        alt: "agroWeather",
+        alt: "Local weather updates for farmers",
         title: "Agro Weather",
         desc: "Stay informed with local weather updates.",
     },
@@ -74,27 +75,23 @@ const Services = () => (
             <p>We provide comprehensive solutions for your digital needs</p>
         </div>
         <div className="services-grid">
-            {services.map((service, idx) => (
-                <div className="service-box" key={idx}>
-                    {service.href ? (
-                        <a href={service.href}>
-                            <div className="service-img">
-                                <img src={images[service.img]} alt={service.alt} />
-                            </div>
-                            <h3>{service.title}</h3>
-                            <p>{service.desc}</p>
-                        </a>
-                    ) : (
-                        <>
-                            <div className="service-img">
-                                <img src={images[service.img]} alt={service.alt} />
-                            </div>
-                            <h3>{service.title}</h3>
-                            <p>{service.desc}</p>
-                        </>
-                    )}
-                </div>
-            ))}
+            {services.map(({ to, img, alt, title, desc }) => {
+                const content = (
+                    <>
+                        <div className="service-img">
+                            <img src={images[img]} alt={alt} />
+                        </div>
+                        <h3>{title}</h3>
+                        <p>{desc}</p>
+                    </>
+                );
+
+                return (
+                    <div className="service-box" key={title}>
+                        {to ? <Link to={to}>{content}</Link> : content}
+                    </div>
+                );
+            })}
         </div>
     </section>
 );

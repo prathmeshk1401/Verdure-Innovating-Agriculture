@@ -11,4 +11,4 @@ function AuthFooter() {
     )
 }
 
-export default AuthFooter
+export default AuthFooter;

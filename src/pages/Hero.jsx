@@ -17,12 +17,11 @@ const Hero = () => (
                     a supportive community.
                 </p>
                 <div className="homeButton-container">
-                    <a href="/Signup" className="btn primary">
-                        Get Started
-                    </a>
-                    <a href="#" className="btn secondary">
+                    <Link to="/Signup" className="btn primary">Get Started</Link>
+                        
+                    <Link to="src/pages/About.jsx" className="btn secondary">
                         Learn More
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

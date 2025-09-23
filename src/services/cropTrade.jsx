@@ -1,5 +1,7 @@
 import React from "react";
 import "../assets/styles/GlobalPages.css";
+import Loader from "../components/Loader";
+import { useState, useEffect } from "react";
 
 const features = [
     {
@@ -41,8 +43,22 @@ const features = [
 ];
 
 function CropTrade() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Show loader only for first load
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1500); // adjust timing
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
-        <div>
+        <div className="crop-tradeContainer">
             <header className="trade-header">
                 <h1>Crop Trade</h1>
                 <p>Your trusted digital marketplace for buying and selling crops</p>

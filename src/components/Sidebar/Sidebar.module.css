@@ -1,0 +1,124 @@
+.logo img {
+    width: 125px;
+    height: auto;
+    display: block;
+    margin: 0 auto 32px auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #034f1a;
+    --secondary-color: #e1e1e1;
+    --light-color: #aeccb8;
+    --text-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --hover-bg: #a8f0bc;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.sidebarContainer {
+    height: 92%;
+    width: 20%;
+    position: fixed;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 20px;
+    left: 20px;
+    background: transparent;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+}
+
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    gap: 0;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    width: 100%;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+    margin-bottom: 24px;
+}
+
+.menuItem:hover {
+    color: #2E8B57;
+    cursor: pointer;
+}
+
+.menuItem img {
+    height: 30px;
+}
+
+.servicesHeader{
+    position: relative;
+    top: 0;
+}
+
+.dropdown {
+    height: 20px;
+    transition: transform 0.4s ease;
+}
+
+.dropdown.open {
+    transform: rotate(180deg);
+}
+
+/* Remove gap and margin from menuSection so spacing is only controlled by .menuItem */
+
+.menuSection {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.logout {
+    margin-top: 0;
+}
+
+.menuSection {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.communityLink, .accountsLink, .services{
+    position: relative;
+    left: 15%; 
+}
+
+.logout {
+    margin-top: auto;
+}

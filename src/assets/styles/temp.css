@@ -1,306 +1,68 @@
+/* =========================================================
+   Verdure – Responsive CSS Refactor
+   Covers: Disease Detect, Crop Care Report, Harvest Hints,
+           New Crop Harvest, Farm Wisdom, Trade/Marketplace,
+           Live Weather, Forum, shared UI parts
+   Notes:
+   - Mobile-first, then scale up.
+   - No fixed widths; use width:100% + max-width.
+   - Remove negative margins that caused overflow.
+   - Grids use auto-fit/minmax for smooth wrapping.
+   - Keep your visual style intact.
+   ========================================================= */
 
-.main-content {
-    flex: 1;
+/* =========================
+   Base & Resets
+   ========================= */
+:root {
+    --primary-color: #034f1a;
+    --secondary-color: #e1e1e1;
+    --text-color: #333;
+    --muted-text: #666;
+    --card-bg: #fff;
+    --soft-bg: #f9f9f9;
+    --border: #ddd;
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.subtitle {
-    font-size: 1.2em;
-    font-style: italic;
-    color: #666;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-/* Search Bar */
-.search-container {
-    display: flex;
-    justify-content: center;
-    margin: 2em 0;
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
 }
 
-#search-input {
-    width: 80%;
-    max-width: 600px;
-    padding: 12px 20px;
-    font-size: 1.1em;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    transition: border-color 0.3s;
+*:focus:not(:focus-visible) {
+    outline: none;
 }
 
-#search-input:hover {
-    border-color: #888;
-}
-
-/* Grid Layout */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em;
-    margin: 2em auto;
-    max-width: 1200px;
-}
-
-.grid-item {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1em;
-    text-align: center;
-    transition: transform 0.3s;
-    cursor: pointer;
-}
-
-.grid-item:hover {
-    transform: translateY(-5px);
-}
-
-.crop-image {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    margin-bottom: 1em;
-}
-
-/* .quinoa {
-    background-image: url('quinoa.jpg');
-}
-
-.kiwi {
-    background-image: url('kiwi.jpg');
-}
-
-.almond {
-    background-image: url('almond.jpg');
-} */
-
-/* Info Box */
-.info-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 800px;
-    margin: 2em auto;
-    padding: 1em;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    border: solid, 2px, #034f1a;
-}
-
-
-/* Crop Page Styling */
-#cropPage {
-    max-width: 900px;
-    margin: 10px auto;
-    padding: 20px;
-    background: transparent;
-    /* Ensure no background */
-    border: none;
-    /* Remove unwanted border */
-    display: none;
-    /* Initially hidden */
-}
-
-.back-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    color: black;
-}
-
-#cropPage i {
-    margin-left: -20px;
-    margin-top: -50px;
-    font-size: 30px;
-}
-
-/* Header Styles */
-.crop-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #222;
-}
-
-/* Info Text */
-.subtitle {
-    text-align: center;
-    font-style: normal;
-    font-size: 1.2rem;
-    color: black;
-    margin-bottom: 20px;
-}
-
-/* Menu Strip */
-.menu-strip {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    background: #e1e1e1;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-/* Menu Options */
-.menu-option {
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: 1px solid transparent;
-}
-
-/* Active Menu Option */
-.menu-option.active {
-    background: #034f1a;
-    color: white;
-    border: none;
-}
-
-/* Content Box */
-.content-box {
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    /* Light border */
-    background: white;
-    /* Ensure clean look */
-}
-
-/* Hide all sections initially */
-.content-section {
-    display: none;
-}
-
-/* Show only active section */
-.content-section.active {
-    display: block;
-}
-
-
-
-.container {
-    background: white;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #2c5f2d;
-    margin-bottom: 40px;
-    font-size: 2rem;
-    margin-top: 10px;
-}
-
-.search-bar {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 16px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.grid-item {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    border: 1px solid #eee;
-}
-
-.grid-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.grid-item img {
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.grid-item h3 {
-    color: #2c5f2d;
-    margin: 0 0 10px 0;
-}
-
-.grid-item p {
-    color: #666;
-    line-height: 1.5;
-    font-size: 14px;
-}
-
-
-/* Responsive Design */
-
-
-/* Responsive design for tabs */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .container input {
-        align-items: center;
-        margin-left: 25px;
-        margin-top: -10px;
-        width: 90%;
-    }
-}
-
-/* Responsive design for phones */
-@media (max-width: 480px) {
-
-    .container input {
-        align-items: center;
-        margin-left: 3.5px;
-        margin-top: -10px;
-        width: 90%;
-    }
-}
-
-/* General Styles */
-html,
-body {
-    width: 100%;
-    overflow-x: hidden;
-    /* Prevents shifting issues */
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    line-height: 1.6;
-    background-color: #efeeea;
-    color: #2d2d2d;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+    padding: 16px;
+    overflow-x: hidden;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    cursor: default;
+    margin: 0 0 .75rem 0;
 }
 
 h1,
@@ -308,143 +70,730 @@ h2,
 h3 {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    /* Bold */
+    text-shadow: 0 0 20px var(--secondary-color);
+    color: var(--primary-color);
 }
 
 button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+    cursor: pointer;
 }
 
 input,
-textarea {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    /* Regular */
-}
-
+textarea,
 p {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    /* Regular */
     line-height: 1.6;
-    /* Improves readability */
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    padding-left: 8px;
+li {
+    margin: 10px 0 5px;
 }
 
-
-/* Header Styling */
-header {
-    text-align: center;
-    padding: 50px 20px;
+input[type="number"],
+.text-input,
+.search-bar,
+.harvestHintsSearch-bar,
+#newCropHarvestSearch-input,
+.farmWisdomSearch-bar,
+.weatherSearch-box input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 5px 0 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
 }
 
-header h1 {
-    font-size: 36px;
-    color: #1d472e;
-    margin-bottom: 12px;
+/* =========================
+   Buttons (unified)
+   ========================= */
+button,
+#pdfButton,
+.disease-analyze-btn,
+.button-container button,
+.weatherSearch-box button,
+.menu-button,
+.menu-option,
+.back-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all .25s ease;
 }
 
-header p {
-    font-size: 20px;
-    color: #4b6043;
+#pdfButton,
+.disease-analyze-btn {
+    width: 100%;
+    border-radius: 8px;
 }
 
-
-
-/* Each icon + label link */
-.icon-link {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.85rem;
-    transition: color 0.2s;
+button:hover,
+#pdfButton:hover,
+.disease-analyze-btn:hover,
+.button-container button:hover,
+.weatherSearch-box button:hover,
+.menu-button:hover,
+.menu-option:hover,
+.back-button:hover {
+    background-color: var(--secondary-color);
+    color: #131413;
+    border-color: var(--primary-color);
 }
 
-.icon-link i {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-}
-
-.icon-link:hover {
-    color: #034f1a;
-}
-
-/* Buttons */
 .button-container {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
 }
 
-.button-container button {
-    padding: 12px 26px;
-    margin-top: 10px;
-    background-color: #034f1a;
-    color: white;
-    border: 2px solid #034f1a;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 14px;
+/* =========================
+   Generic Card/Container Helpers
+   ========================= */
+.container,
+.card,
+.panel {
+    background: var(--card-bg);
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.maxw-1200 {
+    max-width: 1200px;
+    width: 100%;
+    margin-inline: auto;
+}
+
+.section {
+    padding: 20px;
+}
+
+.soft {
+    background: var(--soft-bg);
+}
+
+/* =========================
+   Disease Detection
+   ========================= */
+.diseaseContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 60px auto 0;
+    padding: 16px;
+}
+
+.disease-left-box,
+.disease-right-box {
+    background: var(--soft-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--primary-color);
+    flex: 1 1 360px;
+    min-width: 0;
+    /* prevent overflow */
+}
+
+.diseaseHeader {
+    text-align: center;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.diseaseHeader i {
+    font-size: 36px;
+    color: #333;
+    transition: color .25s;
+}
+
+.diseaseHeader:hover i,
+.diseaseHeader:hover h1 {
+    color: var(--primary-color);
+}
+
+.disease-upload-area {
+    border: 2px dashed #666;
+    border-radius: 12px;
+    padding: 28px 16px;
+    text-align: center;
+    margin: 16px 0;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all .25s;
+    background: #fff;
 }
 
-.button-container button:hover {
-    background: #e1e1e1;
-    backdrop-filter: blur(10px);
-    color: #131413;
-    border: 2px solid #034f1a;
+.disease-upload-area:hover {
+    border-color: #4CAF50;
+    background: #f8f8f8;
 }
 
-header {
-    margin-top: 50px;
+.upload-icon,
+.disease-upload-icon {
+    font-size: 36px;
+    color: #666;
+    margin-bottom: 12px;
 }
 
-/* Forum Sections */
+.disease-right-box h1 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.disease-right-box i {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.disease-result-placeholder {
+    text-align: center;
+    color: #666;
+    padding: 24px 12px;
+    margin-top: 24px;
+}
+
+.disease-result-icon {
+    font-size: 44px;
+    margin-bottom: 12px;
+    color: #ccc;
+}
+
+/* =========================
+   Crop Care Report
+   ========================= */
+.cropCareHeader {
+    margin: 40px auto 24px;
+    text-align: center;
+}
+
+.cropCareHeader h1 {
+    color: #2c5f2d;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+    margin: 0;
+}
+
+.cropCareGrid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    align-items: stretch;
+    padding: 0 12px;
+}
+
+.cropCareGrid-box {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #eee;
+}
+
+h2 {
+    color: #2c5f2d;
+    margin-bottom: 12px;
+    font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+
+.cropCareFeature-list,
+.cropCareSteps-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.cropCareFeature-list li,
+.cropCareSteps-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+#reportOutput {
+    margin-top: 16px;
+    padding: 12px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    display: none;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 24px 0;
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+    text-align: center;
+    padding: 1.25rem;
+    background-color: #cbeed3;
+    font-size: .95rem;
+    color: #100f0f;
+    margin: 20px 0 0;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* =========================
+   Harvest Hints (List & Details)
+   ========================= */
+.harvestHintsHeader {
+    text-align: center;
+    padding-bottom: 24px;
+}
+
+.harvestHintsSubtitle {
+    color: #201e1e;
+    margin: 12px 0;
+}
+
+.harvestHintsSearch-container {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.harvestHintsSearch-bar {
+    text-align: center;
+}
+
+#search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.search-results {
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 6px;
+    list-style: none;
+    padding: 0;
+    display: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.search-results li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.search-results li:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.harvestHintsGrid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px auto 40px;
+    max-width: 1200px;
+    padding: 0 12px;
+}
+
+.crop-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .25s;
+    background: #fff;
+    text-align: center;
+}
+
+.crop-card:hover {
+    transform: translateY(-5px);
+}
+
+.crop-card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.crop-card h3 {
+    margin: 12px;
+    color: var(--primary-color);
+}
+
+.crop-card p {
+    margin: 0 12px 12px;
+    color: #030303;
+}
+
+.info-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #aeccb8;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 900px;
+    gap: 12px;
+}
+
+.info-box i {
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+.harvestHintsContainer,
+.harvestHintsNextContainer {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    width: 100%;
+    max-width: 1100px;
+    margin: 60px auto 0;
+    overflow: hidden;
+}
+
+.harvestHintsNextContainer {
+    margin: 60px auto 20px;
+}
+
+.back-button {
+    background: none;
+    color: var(--primary-color);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.back-button i {
+    margin-right: 2px;
+}
+
+.subtitle {
+    color: #666;
+    text-align: center;
+}
+
+.harvestHintsMenu-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.menu-button {
+    background: #fff;
+    color: var(--primary-color);
+    border: 1px solid #ddd;
+}
+
+.menu-button.active {
+    background-color: #cbeed3;
+    transform: scale(0.98);
+}
+
+.content-section {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 12px;
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* =========================
+   New Crop Harvest
+   ========================= */
+.newCropHarvestContainer {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    width: 100%;
+    max-width: 1100px;
+    margin: 60px auto 0;
+}
+
+.newCropHarvestHeader {
+    text-align: center;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px 0;
+}
+
+.newCropHarvestHeader h1 {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    color: #2c5f2d;
+    margin: 8px 0 4px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.newCropHarvestSubtitle {
+    font-size: 1.05rem;
+    color: #666;
+}
+
+.newCropHarvestSearch-container {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+    padding: 0 12px;
+}
+
+#newCropHarvestSearch-input {
+    max-width: 720px;
+}
+
+.newCropHarvestGrid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 16px auto;
+    max-width: 1200px;
+    padding: 0 12px;
+}
+
+.newCropHarvestGrid-item {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: transform .25s;
+    cursor: pointer;
+    background: #fff;
+}
+
+.newCropHarvestGrid-item:hover {
+    transform: translateY(-5px);
+}
+
+.crop-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.quinoa {
+    background-image: url('/public/quinoa.jpg');
+}
+
+.kiwi {
+    background-image: url('/public/kiwi.jpg');
+}
+
+.almond {
+    background-image: url('/public/almond.jpg');
+}
+
+.newCropHarvestInfo-box {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #aeccb8;
+    padding: 16px;
+}
+
+#cropPage {
+    max-width: 980px;
+    margin: 8px auto;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    display: block;
+}
+
+#back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 12px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#cropPage i {
+    font-size: 26px;
+}
+
+.newCropHarvestCrop-title {
+    text-align: center;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+    font-weight: 800;
+    color: #222;
+}
+
+.newCropHarvestMenu-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0;
+    justify-content: center;
+}
+
+.menu-option {
+    background: #fff;
+    color: var(--primary-color);
+    border: 1px solid #ddd;
+}
+
+.menu-option.active {
+    background-color: #cbeed3;
+    transform: scale(0.98);
+}
+
+.newCropHarvestContent-box {
+    padding: 16px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+/* =========================
+   Farm Wisdom
+   ========================= */
+.farmWisdomContainer {
+    background: #fff;
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.farmWisdomSearch-bar {
+    max-width: 720px;
+    margin-inline: auto;
+}
+
+.farmWisdomGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.farmWisdomGrid-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+    border: 1px solid #eee;
+}
+
+.farmWisdomGrid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.farmWisdomGrid-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.farmWisdomGrid-item h3 {
+    color: #2c5f2d;
+    margin: 0 0 8px;
+}
+
+.farmWisdomGrid-item p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* =========================
+   Forum
+   ========================= */
+.farmer-forum {
+    margin: 60px 0 24px;
+}
+
+.farmer-forum h1 {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    margin-bottom: 8px;
+}
+
+header p {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #333;
+    margin: 0 0 24px;
+}
+
+.forum-container,
 .forum-categories,
 .discussions,
 .forum-statistics {
-    padding: 5px 20px;
-    max-width: 1100px;
-    margin: auto;
+    padding: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Section Headings */
 .forum-categories h2,
 .forum-statistics h2,
 .discussion h2 {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
     color: #1c3819;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.forum-grid {
+.forum-cropCareGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
 }
 
-/* Category boxes */
 .category-box {
     border-radius: 12px;
-    padding: 20px;
+    padding: 16px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, background-color 0.3s;
+    transition: transform .2s, background-color .25s;
     background-color: #fff;
 }
 
@@ -453,7 +802,6 @@ header {
     background-color: #d8f3d2;
 }
 
-/* Background colors */
 .community {
     background-color: #e5f6e1;
 }
@@ -482,46 +830,35 @@ header {
     background-color: #fff8dc;
 }
 
-/* Text styling */
 .category-box h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
 }
 
 .category-box p {
     font-size: 1rem;
-    margin-bottom: 10px;
-    line-height: 1.3rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
 }
 
 .category-box small {
     color: #555;
 }
 
-/* Responsive Grid */
-@media (max-width: 1024px) {}
-
-@media (max-width: 600px) {
-    .forum-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Discussion Posts */
 .discussions h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    padding-left: 8px;
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    margin-bottom: 14px;
+    padding-left: 4px;
     color: #1c3819;
 }
 
 .discussion-box {
-    background-color: #fff;
+    background: #fff;
     border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 20px;
+    padding: 16px;
+    margin-bottom: 16px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
-    transition: transform 0.2s ease;
+    transition: transform .2s;
 }
 
 .discussion-box:hover {
@@ -529,84 +866,80 @@ header {
 }
 
 .discussion-box h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
     color: #1d472e;
 }
 
 .discussion-box p {
     font-size: 1rem;
     color: #444;
-    margin-bottom: 12px;
-    line-height: 1.3rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
 }
 
 .discussion-box span {
-    font-size: 0.85rem;
+    font-size: .85rem;
     background-color: #eef5ee;
     padding: 6px 12px;
     border-radius: 20px;
-    margin-right: 8px;
+    margin-right: 6px;
     display: inline-block;
     color: #366c2b;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
-/* Forum Statistics */
 .icon {
     height: 30px;
     width: 30px;
 }
 
 .forum-statistics {
-    padding: 10px 20px 50px;
+    padding: 12px 12px 36px;
 }
 
 .forum-statistics h2 {
     color: #1c3819;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .stats-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
 }
 
 .stat-card {
     display: flex;
     align-items: center;
-    border-radius: 5px;
-    padding: 20px 30px;
+    border-radius: 10px;
+    padding: 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    min-width: 190px;
-    gap: 18px;
-    background-color: white;
-
+    gap: 14px;
+    background-color: #fff;
 }
 
 .stat-card:hover {
-    transition: 0.5s ease;
+    transition: .25s ease;
     transform: translateY(-3px);
-    box-shadow: 0px 5px 15px rgba(14, 80, 59, 0.7);
+    box-shadow: 0 5px 15px rgba(14, 80, 59, 0.18);
 }
 
 .icon-wrap {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .text-group .label {
-    font-size: 0.95rem;
+    font-size: .95rem;
     color: #3f3f3f;
     margin: 0;
 }
 
 .text-group .value {
     margin-top: 4px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 0;
 }
@@ -627,333 +960,276 @@ header {
     color: #2451d5;
 }
 
-
-
-
-/* Responsive design for small screen pc */
-@media (max-width: 1024px) {
-    /* #logo {
-        left: 10%;
-        transform: translateX(-50%);
-        z-index: 999;
-    }
-
-    .nav-links {
-        gap: 2.5px;
-        margin-right: 20%
-    }
-
-    .gtranslate_wrapper {
-        width: 10%;
-        margin-right: 3%
-    } */
-
-    .nextContainer {
-        width: 80%;
-        margin-left: 40px;
-    }
-
-    .content-section {
-        margin-top: 30px;
-    }
-
-    .forum-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 5px;
-        margin-right: 110px;
-        display: none;
-    }
-
-    #logo {
-        left: 10%;
-        transform: translateX(-50%);
-        z-index: 999;
-    }
-
-    .menu-toggle {
-        margin-right: 10%;
-    }
-
-    .horizontal-menu {
-        /* gap: 20px; */
-        right: -45%
-    }
-}
-
-
-
-@media (max-width: 400px) {
-    header h1 {
-        line-height: 3rem;
-    }
-
-    .container h2 {
-        margin-top: -40px;
-        line-height: 3rem;
-    }
-
-    .forum-grid {
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-    }
-}
-
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-    color: #4CAF50;
-    /* Earthy green color */
-}
-
-/* Hero Section */
+/* =========================
+   Trade / Marketplace
+   ========================= */
 .hero {
-    /* background-image: url('farm-background.jpg'); */
-    /* Replace with your image */
     background-size: cover;
     background-position: center;
     text-align: center;
-    padding: 50px 20px;
-    color: white;
-}
-
-.search-bar {
-    padding: 10px;
-    width: 300px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-}
-
-/* Crop Trade Section */
-.crop-trade {
-    padding: 20px;
-    background-color: #fff;
+    padding: 48px 16px;
+    color: #fff;
+    border-radius: 12px;
 }
 
 .filter-options {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
 }
 
 .filter-options label {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
-.listings {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.listing {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: calc(33% - 40px);
-    /* Three items per row */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.listing img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Marketplace Section */
-.marketplace {
-    padding: 20px;
-    background-color: #fff;
-}
-
-.products {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.product {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: calc(33% - 40px);
-    /* Three items per row */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Price Trends Section */
-.price-trends,
-.farmer-profiles,
-.order-tracking,
-.payment,
-.weather-forecast,
-.reviews {
-    padding: 20px;
-    background-color: #fff;
-    margin: 20px 0;
-}
-
-
-/* Features Section */
-.features {
-    max-width: 1200px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-    margin-bottom: 120px;
-}
-
-.features h2 {
+.trade-header h1 {
     text-align: center;
-    font-size: 2rem;
+    margin: 40px 0 8px;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.trade-header p {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #333;
+    margin: 0 0 16px;
+}
+
+.tradeFeatures {
+    max-width: 1200px;
+    margin: 24px auto 60px;
+    padding: 0 12px;
+}
+
+.tradeFeatures h2 {
+    text-align: center;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
     color: #1b4332;
-    margin-bottom: 2rem;
+    margin-bottom: 16px;
 }
 
-/* Grid Layout */
-.grid-container {
+.tradeGrid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: transparent;
 }
 
-.feature-card {
-    background-color: #ffffff;
+.tradeFeature-card {
+    background-color: #fff;
     border: 1px solid #d6e4d9;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-
+    transition: transform .2s;
 }
 
-.feature-card:hover {
+.tradeFeature-card:hover {
     transform: translateY(-5px);
 }
 
-.feature-card h3 {
+.tradeFeature-card h3 {
     color: #2e7d32;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
 }
 
-.feature-card p {
-    font-size: 0.95rem;
+.tradeFeature-card p {
+    font-size: .95rem;
     color: #4b5d44;
 }
 
-.search-box {
+/* listings/products: grid for predictable wrap */
+.listings,
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.listing,
+.product {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: var(--shadow-sm);
+    background: #fff;
+}
+
+.listing img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+/* =========================
+   Live Weather
+   ========================= */
+.liveWeatherContainer {
+    background: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.weatherHeader h1 {
+    text-align: center;
+    margin: 40px 0 10px;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.weatherSearch-box {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 1.5rem;
-    gap: 1rem;
+    gap: 12px;
+    padding: 16px;
 }
 
-.search-box input {
-    padding: 0.6rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 250px;
-    font-size: 1rem;
-}
-
-.search-box button {
-    background-color: #034f1a;
-    color: white;
-    border: 2px solid #034f1a;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background-color: #e1e1e1;
-    color: #131413;
+.weatherSearch-box input {
+    max-width: 420px;
 }
 
 .live-weather,
-.forecast,
+.weatherForecast,
 .alerts,
 .crop-advice {
-    max-width: 900px;
-    margin: auto;
-    padding: 2rem 1rem;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px 12px;
 }
 
 .live-weather h2,
-.forecast h2,
+.weatherForecast h2,
 .alerts h2,
 .crop-advice h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    margin-bottom: 12px;
     color: #2c662d;
 }
 
 .weather-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
 }
 
 .stat {
     background-color: #e6f4e8;
-    padding: 1rem;
+    padding: 12px;
     border-radius: 12px;
     text-align: center;
 }
 
 .stat .label {
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 6px;
 }
 
-.forecast-grid {
+.weatherForecast-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
     text-align: center;
 }
 
-.forecast-grid .day {
-    background-color: #ffffff;
+.weatherForecast-grid .day {
+    background: #fff;
     border: 1px solid #dee2e6;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 12px;
 }
 
 .alerts ul {
     background-color: #fff3cd;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 12px;
     list-style: none;
-    padding-left: 1.2rem;
+    margin: 0;
 }
 
 .alerts li {
-    margin-bottom: 0.8rem;
+    margin-bottom: .6rem;
 }
 
 .crop-advice p {
     background-color: #e2f0d9;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 0;
 }
 
+/* =========================
+   NAV minimal (keep neutral to avoid layout shifts)
+   ========================= */
+#logo {
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.menu-toggle {
+    display: inline-flex;
+}
+
+.horizontal-menu {
+    position: relative;
+}
+
+/* =========================
+    Responsive Breakpoints
+   ========================= */
+
+/* >= 768px (tablets) */
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+
+    .harvestHintsSearch-bar {
+        max-width: 600px;
+        margin-inline: auto;
+    }
+}
+
+/* >= 1024px (small laptops) */
+@media (min-width: 1024px) {
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+}
+
+/* Ultra-small phones fixes */
+@media (max-width: 380px) {
+
+    .crop-card img,
+    .crop-image {
+        height: 150px;
+    }
+}
+
+/* Optional: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

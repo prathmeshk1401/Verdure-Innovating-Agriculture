@@ -1,14 +1,16 @@
 import React from "react";
-import "../assets/styles/GlobalPages.css";
+import "../assets/styles/AuthFooter.css";
 
 const ServicesFooter = () => (
-    <footer>
-        <p>
-            &copy; 2025 Verdure Farm Connect. All rights reserved. |{" "}
-            <a href="#">About</a> | <a href="#">Privacy</a> |{" "}
-            <a href="#">Terms</a> | <a href="#">Help</a>
-        </p>
-    </footer>
+    <div className="pageWrapper">
+        <footer className="services-footer">
+            <p>
+                &copy; 2025 Verdure Farm Connect. All rights reserved. |{" "}
+                <a href="#about">About</a> | <a href="#privacy">Privacy</a> |{" "}
+                <a href="#terms">Terms</a> | <a href="#help">Help</a>
+            </p>
+        </footer>
+    </div>
 );
 
 export default ServicesFooter;

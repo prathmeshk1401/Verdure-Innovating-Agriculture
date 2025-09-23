@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../assets/styles/GlobalPages.css";
+import Loader from "../components/Loader";
+import { useEffect } from "react";
 
 const crops = [
     {
@@ -99,14 +101,28 @@ export default function NewCropHarvest() {
         crop.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Show loader only for first load
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1500); // adjust timing
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
         <div className="newCropHarvestContainer">
             <div className="newCropHarvestMain-content">
                 {!selectedCrop ? (
                     <div id="newCropHarvestMain-page">
-                            <header className="newCropHarvestHeader">
+                        <header className="newCropHarvestHeader">
                             <h1>New Crop Harvest</h1>
-                                <p className="newCropHarvestSubtitle">
+                            <p className="newCropHarvestSubtitle">
                                 Empower farmers to cultivate imported crops with personalized soil
                                 testing, expert advice, and step-by-step guides, ensuring optimal
                                 growth and increased income.
@@ -165,13 +181,12 @@ export default function NewCropHarvest() {
                             </p>
                         </header>
                         <hr className="separator" />
-                            <div className="newCropHarvestMenu-strip">
+                        <div className="newCropHarvestMenu-strip">
                             {menuOptions.map((option) => (
                                 <div
                                     key={option.key}
-                                    className={`menu-option${
-                                        activeMenu === option.key ? " active" : ""
-                                    }`}
+                                    className={`menu-option${activeMenu === option.key ? " active" : ""
+                                        }`}
                                     data-content={option.key}
                                     onClick={() => setActiveMenu(option.key)}
                                     style={{ cursor: "pointer" }}
@@ -180,7 +195,7 @@ export default function NewCropHarvest() {
                                 </div>
                             ))}
                         </div>
-                            <div className="newCropHarvestContent-box" id={activeMenu}>
+                        <div className="newCropHarvestContent-box" id={activeMenu}>
                             {cropContent[activeMenu](selectedCrop.name)}
                         </div>
                     </div>

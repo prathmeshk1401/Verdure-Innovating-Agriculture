@@ -1,68 +1,60 @@
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
-function Navbar() {
-    const location = useLocation();
-    const isMainPage = location.pathname === "/";
+export default function Navbar() {
+    const [showBottomBar, setShowBottomBar] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
-        // Only inject GTranslate scripts if not already present
-        if (!document.getElementById('gtranslate-settings')) {
-            const gtranslateScript = document.createElement("script");
-            gtranslateScript.id = 'gtranslate-settings';
-            gtranslateScript.innerHTML = `window.gtranslateSettings = { "default_language": "en", "native_language_names": true, "detect_browser_language": true, "languages": ["en", "hi", "mr", "ta", "te"], "wrapper_selector": ".gtranslate_wrapper", "flag_size": 16, "switcher_horizontal_position": "inline", "switcher_open_direction": "top", "flag_style": "3d" }`;
-            document.body.appendChild(gtranslateScript);
-        }
-        if (!document.getElementById('gtranslate-widget')) {
-            const gtranslateWidget = document.createElement("script");
-            gtranslateWidget.id = 'gtranslate-widget';
-            gtranslateWidget.src = "https://cdn.gtranslate.net/widgets/latest/dwf.js";
-            gtranslateWidget.defer = true;
-            document.body.appendChild(gtranslateWidget);
-        }
-        // No cleanup to avoid removing scripts needed globally
-    }, []);
-
-    // Helper to get correct href
-    const getHref = (hash) => isMainPage ? hash : "/" + hash;
+        const handleScroll = () => {
+            setShowBottomBar(window.scrollY < lastScrollY);
+            setLastScrollY(window.scrollY);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
 
     return (
         <nav>
             <div className="nav-container">
-                {/* Logo with Link to Home */}
-                <a href={getHref("#home")} className="logo-wrapper">
+                {/* Logo */}
+                <Link to="/" className="logo-wrapper">
                     <img src="VERDURE-logo.png" alt="Logo" id="logo" />
-                </a>
+                </Link>
 
-                {/* Menu Toggle */}
-                <div className="menu-toggle" id="menuToggle">
-                    <i className="fa-solid fa-bars"></i>
-                </div>
-
-                {/* Icon-based Navigation (Horizontal Menu) */}
-                <div className="horizontal-menu" id="horizontalMenu">
-                    <a href={getHref("#home")} className="icon-link"><i className="fa-solid fa-house"></i></a>
-                    <a href={getHref("#about")} className="icon-link"><i className="fa-solid fa-user"></i></a>
-                    <a href={getHref("#services")} className="icon-link"><i className="fa-solid fa-seedling"></i></a>
-                    <a href={getHref("#testimonials")} className="icon-link"><i className="fa-solid fa-comments"></i></a>
-                    <a href={getHref("#contact")} className="icon-link"><i className="fa-solid fa-phone-volume"></i></a>
-                </div>
-
-                {/* Nav-Links for wider screens */}
+                {/* Desktop Links */}
                 <ul className="nav-links">
-                    <li><a href={getHref("#home")}>Home</a></li>
-                    <li><a href={getHref("#about")}>About</a></li>
-                    <li><a href={getHref("#services")}>Services</a></li>
-                    <li><a href={getHref("#testimonials")}>Testimonials</a></li>
-                    <li><a href={getHref("#contact")}>Contact</a></li>
-                    <li><Link to="/login">Login</Link></li>
-                    <li>
-                        <div className="gtranslate_wrapper"></div>
-                    </li>
+                    <li><HashLink smooth to="/#home" className="navBtn">Home</HashLink></li>
+                    <li><HashLink smooth to="/#about" className="navBtn">About</HashLink></li>
+                    <li><HashLink smooth to="/#services" className="navBtn">Services</HashLink></li>
+                    <li><HashLink smooth to="/#testimonials" className="navBtn">Testimonials</HashLink></li>
+                    <li><HashLink smooth to="/#contact" className="navBtn">Contact</HashLink></li>
+                    <li><Link to="/login" className="navBtn">Login</Link></li>
                 </ul>
+            </div>
+
+            {/* Mobile bottom bar */}
+            <div className={`mobile-bottombar ${showBottomBar ? "show" : "hide"}`}>
+                <HashLink smooth to="/#home" className="icon-link">
+                    <i className="fa-solid fa-house"></i>
+                </HashLink>
+                <HashLink smooth to="/#about" className="icon-link">
+                    <i className="fa-solid fa-user"></i>
+                </HashLink>
+                <HashLink smooth to="/#services" className="icon-link">
+                    <i className="fa-solid fa-seedling"></i>
+                </HashLink>
+                <HashLink smooth to="/#testimonials" className="icon-link">
+                    <i className="fa-solid fa-comments"></i>
+                </HashLink>
+                <HashLink smooth to="/#contact" className="icon-link">
+                    <i className="fa-solid fa-phone-volume"></i>
+                </HashLink>
+                <Link to="/user-dashboard/login" className="icon-link">
+                    <i className="fa-solid fa-right-to-bracket"></i>
+                </Link>
             </div>
         </nav>
     );
 }
-
-export default Navbar;

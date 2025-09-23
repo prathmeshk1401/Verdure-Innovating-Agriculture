@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/GlobalPages.css";
 import wheatImg from "../assets/wheat.jpg";
 import riceImg from "../assets/rice.jpg";
 import cottonImg from "../assets/cotton.jpg";
+import Loader from "../components/Loader";
 
 const crops = [
     {
@@ -35,6 +36,24 @@ export default function HarvestHintsMain() {
     const filteredCrops = crops.filter((crop) =>
         crop.name.toLowerCase().includes(search.toLowerCase())
     );
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetchDataFromAPI(); // example
+    }, []);
+
+    const fetchDataFromAPI = async () => {
+        setLoading(true);
+        // simulate API call
+        setTimeout(() => {
+            setData("Result from API");
+            setLoading(false);
+        }, 2000);
+    };
+
+    if (loading) return <Loader />;
+
 
     return (
         <div className="harvestHintsContainer">
@@ -51,7 +70,6 @@ export default function HarvestHintsMain() {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
-                    <i className="fas fa-search search-icon" id="search-icon"></i>
                     {search && (
                         <ul className="search-results">
                             {filteredCrops.length ? (

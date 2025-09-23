@@ -1,0 +1,207 @@
+/* src/Schedules/Schedules.module.css */
+
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #d7dbd9;
+    --text-color: #000000;
+    --light-text-color: #131212;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --border: #ddd;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --completed-color: #cde6e1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.schedulesContainer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: transparent;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    position: relative;
+    left: 10%;
+    border: 2px solid #fff;
+}
+
+/* Header */
+.schedulesHeaderContainer {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 1rem;
+}
+
+.schedulesHeader h2 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    letter-spacing: 1.5px;
+}
+
+.schedulesHeader p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Add Task Section */
+.schedulesAdd {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr auto;
+    gap: 1rem;
+    align-items: center;
+    background-color: #f9fdf7;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--primary-color);
+}
+
+.schedulesAdd h3 {
+    grid-column: 1 / -1;
+    margin: 0 0 0.75rem 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.taskInput,
+.dateInput {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    transition: border-color 0.3s ease;
+    outline: none;
+    width: 100%;
+}
+
+.taskInput:focus,
+.dateInput:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px var(--secondary-color);
+}
+
+.addBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    justify-self: start;
+}
+
+.addBtn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Task List */
+.schedulesList {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    min-height: 200px;
+}
+
+.schedulesList p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin: 2rem 0;
+}
+
+.schedulesList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem 1rem;
+    align-items: center;
+}
+
+.taskItem {
+    display: contents; /* To allow grid children to span */
+}
+
+.taskItem span {
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    color: var(--text-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.completed span {
+    background-color: var(--completed-color);
+    color: #1b4332;
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.toggleBtn {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    justify-self: center;
+    user-select: none;
+}
+
+.toggleBtn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 8px rgba(42, 157, 143, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .schedulesContainer {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .schedulesAdd {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .schedulesAdd h3 {
+        grid-column: 1;
+    }
+
+    .addBtn {
+        justify-self: stretch;
+    }
+
+    .schedulesList ul {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .toggleBtn {
+        justify-self: end;
+        width: 100px;
+    }
+}

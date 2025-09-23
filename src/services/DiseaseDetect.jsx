@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/GlobalPages.css";
+import Loader from "../components/Loader";
+
+const DiseaseDetect = () => {
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetchDataFromAPI(); // example
+    }, []);
+
+    const fetchDataFromAPI = async () => {
+        setLoading(true);
+        // simulate API call
+        setTimeout(() => {
+            setData("Result from API");
+            setLoading(false);
+        }, 2000);
+    };
+
+    if (loading) return <Loader />;
 
 
-function DiseaseDetect() {
     return (
         <div className="diseaseContainer">
             {/* Left Box */}

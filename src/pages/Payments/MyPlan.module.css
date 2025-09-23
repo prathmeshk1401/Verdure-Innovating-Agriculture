@@ -1,0 +1,195 @@
+/* src/Payments/MyPlan.css */
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #d7dbd9;
+    --text-color: #000000;
+    --light-text-color: #131212;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    color: #0d0e0d;
+    text-shadow: 0 0 20px #e1e1e1;
+}
+
+button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    /* Regular */
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+.myplan-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    gap: 1.5rem;
+    color: var(--primary-color);
+    position: relative;
+    left: 10%;
+    top: 5px;
+}
+
+.myplan-header {
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 1rem;
+}
+
+.myplan-header h2 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+
+.myplan-header p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.plan-details {
+    background: #f9fafb;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    padding: 1.5rem 2rem;
+    box-shadow: inset 0 0 10px #e1e8f0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.plan-details h3{
+    margin: 0;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.plan-details h4{
+    font-size: 1.3rem;
+}
+
+.plan-price {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #09863d;
+    margin: 0.2rem 0 1rem;
+}
+
+.plan-features {
+    list-style: disc inside;
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--light-text-color);
+    font-size: 1rem;
+}
+
+.plan-features li {
+    margin-bottom: 0.5rem;
+}
+
+.renewal-info {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 1rem;
+}
+
+.renewal-info strong {
+    color: #2c502d;
+}
+
+.plan-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.plan-actions button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.change-btn{
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    color: white;
+}
+
+.change-btn:hover, .cancel-btn:hover {
+    background-color: #e1e1e1;
+    box-shadow: 0 6px 6px rgba(17, 95, 9, 0.5);
+    /* border: 2px solid var(--primary-color); */
+    color: var(--primary-color);
+}
+
+.cancel-btn {
+    background-color: #c13e3e;
+    color: #fff;
+    border: 2px solid black;
+}
+
+.lastButton{
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lastButton:hover {
+    background: linear-gradient(135deg, #219150, #27ae60);
+    box-shadow: 0 10px 25px rgba(33, 145, 80, 0.7);
+}

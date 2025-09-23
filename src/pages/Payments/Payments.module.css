@@ -1,0 +1,190 @@
+/* src/Payments/Payments.css */
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #d7dbd9;
+    --text-color: #000000;
+    --light-text-color: #131212;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    color: #0d0e0d;
+    text-shadow: 0 0 20px #e1e1e1;
+}
+
+button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    /* Regular */
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.payments-container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    position: relative;
+    left: 10%;
+    top: 5px;
+    background: transparent;
+    border: 2px solid #fff;
+    /* background: linear-gradient(135deg, #e6f4ea, #d0e8d4); */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(34, 85, 34, 0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2a4d14;
+}
+
+.payments-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.payments-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 3px rgba(58, 107, 34, 0.3);
+}
+
+.payments-header p {
+    font-size: 1.1rem;
+    color: #214f24;
+    font-weight: 550;
+}
+
+.plans-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+}
+
+.plan-card {
+    background: #f9fdf7;
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 6px 15px rgba(85, 140, 34, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(85, 140, 34, 0.35);
+}
+
+.plan-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.plan-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #d35400;
+    /* carrot orange */
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #e67e22, #d35400);
+    background-clip: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.plan-features {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+    color: #3e5f1a;
+    font-weight: 500;
+}
+
+.plan-features li {
+    margin-bottom: 0.6rem;
+    padding-left: 1.2rem;
+    position: relative;
+    list-style: none;
+}
+
+.plan-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    /* fresh green check */
+    font-weight: bold;
+}
+
+.subscribe-btn {
+    background: linear-gradient(135deg, #27ae60, #1e8449);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+    align-self: center;
+    width: 100%;
+    max-width: 180px;
+}
+
+.subscribe-btn:hover {
+    background: linear-gradient(135deg, #1e8449, #145a32);
+    box-shadow: 0 6px 12px rgba(30, 132, 73, 0.5);
+}
+
+.selected-plan {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: #d9f0d9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+    text-align: center;
+    color: #2e7d32;
+    font-weight: 600;
+    font-size: 1.15rem;
+}
+
+.selected-plan h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(46, 125, 50, 0.2);
+}

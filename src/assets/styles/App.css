@@ -14,12 +14,15 @@ body {
     line-height: 1.6;
     background-color: #e1e1e1;
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     scrollbar-width: thin;
     scroll-behavior: smooth;
 }
+
 h1,
 h2,
 h3 {
@@ -106,28 +109,17 @@ nav {
     margin-right: 45px;
 }
 
-.gtranslate_wrapper {
+
+
+.gt_container--hich1m .gt_switcher {
     position: fixed;
-    top: 27px;
-    right: 25px;
+    top: 30px;
+    right: 10px;
+    border-radius: 10px;
     border: 2px, solid, #034f1a;
-    border-radius: 5px;
-    overflow: hidden;
-    align-items: center;
 }
 
-.gtranslate_wrapper select {
-    border-radius: 8px;
-    padding: 10px;
-}
-
-.gt_container--hich1m .gt_switcher .gt_option a {
-    color: #000;
-    padding: 3px 5px;
-    margin-top: 2px;
-}
-
-.nav-links a {
+.navBtn {
     text-decoration: none;
     color: #333;
     font-weight: 600;
@@ -135,45 +127,23 @@ nav {
     padding: 8px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
 }
 
+
 /* Only the nav links get hover effect, not the logo */
-.nav-links a:hover {
+.navBtn:hover {
     background-color: #034f1a;
     color: #fff;
 }
 
-/* Menu toggle icon style */
-.menu-toggle {
-    font-size: 1.5rem;
-    color: black;
-    cursor: pointer;
-    display: block;
-    z-index: 9999;
-    position: absolute;
-    right: 20px;
-    background: none;
+.mobile-bottombar {
+    display: none;
 }
 
-/* Hidden horizontal menu (mobile only) */
-.horizontal-menu {
-    position: absolute;
-    top: 22%;
-    right: -46%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    padding: 0.75rem 1rem;
-    transform: translateX(100%);
-    transition: transform 0.50s ease-in-out;
-    z-index: 999;
-}
-
-/* Show menu when active */
-.horizontal-menu.show {
-    transform: translateX(0);
-}
 
 /* Each icon + label link */
 .icon-link {
@@ -249,6 +219,7 @@ nav {
 .hero h1 {
     font-size: 3rem;
     color: #333;
+    text-shadow: 0 0 20px #aeccb8;
     margin-bottom: 1.5rem;
     text-align: left;
 }
@@ -306,21 +277,19 @@ span {
 
 /* About Section */
 .about-section {
-    padding: 5rem 2rem;
     background: #aeccb8;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    margin-right: -20px;
-    margin-left: -20px;
     padding-top: 60px;
 }
 
 .about-container {
     max-width: 1200px;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 3rem;
+    padding-bottom: 50px;
 }
 
 .about-image {
@@ -400,6 +369,7 @@ img:hover {
     margin-right: 10px;
 }
 
+
 /* Services Section Styles */
 .services {
     padding: 60px 20px;
@@ -432,7 +402,8 @@ img:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    padding: 0 20px;
+    padding: 0 30px;
+    align-items: stretch;
 }
 
 .service-box {
@@ -443,6 +414,7 @@ img:hover {
     transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
         box-shadow 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
     will-change: transform, box-shadow;
+    flex-direction: column;
 }
 
 .service-box:hover {
@@ -489,9 +461,6 @@ img:hover {
     background-color: #aeccb8;
     padding: 60px 20px;
     text-align: center;
-    scroll-margin-top: 500px;
-    margin-left: -20px;
-    margin-right: -20px;
 }
 
 .testimonials h2 {
@@ -662,9 +631,10 @@ img:hover {
 
 .site-footer {
     background-color: #aeccb8;
+    top: auto;
     color: #000000;
     padding: 40px 0;
-    margin: 50px -20px -20px
+    margin: 0px 0px 0px 0px;
 }
 
 .footer-container {
@@ -674,7 +644,6 @@ img:hover {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     padding: 0 20px;
-
 }
 
 .footer-section h4 {
@@ -689,18 +658,29 @@ img:hover {
     padding: 0;
 }
 
+
 .footer-links li {
     margin-bottom: 8px;
+
 }
 
-.footer-links a {
+.footer-links button,
+.links {
     color: #000000;
-    /* Links in black */
-    text-decoration: none;
+    font-size: 1em;
+    padding: 5px;
     transition: color 0.3s ease;
+    background: none;
+    border: none;
+    text-decoration: none;
 }
 
-.footer-links a:hover {
+.footer-links button:hover {
+    color: #034f1a;
+    /* Dark green hover for links */
+}
+
+.links:hover {
     color: #034f1a;
     /* Dark green hover for links */
 }
@@ -752,11 +732,19 @@ img:hover {
     .menu-toggle {
         display: none !important;
     }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 0 20px;
+    }
 }
 
 /* Responsive design for small screen pc */
 
 @media (max-width: 1024px) {
+
+
     #logo {
         left: 10%;
         transform: translateX(-50%);
@@ -769,11 +757,20 @@ img:hover {
     }
 
     .gtranslate_wrapper {
-        width: 10%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 15px;
     }
 
     .hero {
         margin-top: 50px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 0 20px;
+        margin-left: -6px;
     }
 }
 
@@ -781,49 +778,95 @@ img:hover {
 /* Responsive design for tabs */
 
 @media (max-width: 768px) {
+    .mobile-bottombar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 0;
+        height: auto;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: transform 0.3s ease-in-out;
+        background-color: #aeccb8;
+        border-radius: 20px;
+    }
+
+    .mobile-bottombar.show {
+        transform: translateY(0);
+    }
+
+    .mobile-bottombar.hide {
+        transform: translateY(100%);
+    }
+
     .nav-links {
-        gap: 5px;
-        margin-right: 110px;
         display: none;
     }
 
     #logo {
-        left: 10%;
-        transform: translateX(-50%);
-        z-index: 999;
+        position: relative;
+        /* instead of fixed */
+        left: auto;
+        transform: none;
+        margin: 0 auto;
+        display: block;
     }
 
-    .gtranslate_wrapper {
-        width: 10%;
-    }
-
-    .hero {
-        margin-top: 80px;
+    .homeButton-container {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
         align-items: center;
-        flex-direction: column;
+        margin-top: 0px;
+        margin-left: -10px;
+    }
+
+
+
+    .homeButton-container .btn {
+        flex: 1;
         text-align: center;
+        font-size: 1rem;
+        padding: 0.7rem 1rem;
+        margin-top: -5%;
+    }
+
+    #name {
+        font-size: 1rem;
+        width: auto;
+    }
+
+    .hero-content {
+        padding-left: 0;
+
     }
 
     .hero-image {
-        width: 75% !important;
-        height: 300px !important;
+        display: none;
     }
 
-    .button-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: -20px;
+
+    .about-section,
+    .testimonials,
+    .site-footer {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
     }
 
     .about-container {
         flex-direction: column;
-        text-align: center;
     }
 
-    .testimonial-grid {
-        flex-direction: column;
-        align-items: center;
+    .services {
+        padding: 40px 10px;
     }
 
     .testimonial-item {
@@ -840,29 +883,32 @@ img:hover {
     .footer-container {
         grid-template-columns: 1fr;
     }
+
 }
 
 
 /* Responsive design for phones */
 @media (max-width: 480px) {
-    #logo {
-        left: 20%;
-        transform: translateX(-50%);
-        z-index: 999;
-    }
-
-    .horizontal-menu {
-        gap: 20px;
-        right: -37%
-    }
-
-    .hero-content {
-        margin-right: 10%;
+    .hero {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
     .hero-image img {
-        width: 149% !important;
-        height: 250px !important;
-        margin-top: 10%;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 480px !important;
+        margin: 0 auto !important;
+    }
+
+    .services-grid {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* If you still have a horizontal-menu offset, bring it into flow */
+    .horizontal-menu {
+        right: 0;
+        transform: translateX(0);
     }
 }

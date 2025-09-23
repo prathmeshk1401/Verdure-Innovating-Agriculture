@@ -1,0 +1,482 @@
+/* Dashboard.css */
+
+:root {
+    --primary-color: #045d1f;
+    --secondary-color: #aeccb8;
+    --background-color: #d7dbd9;
+    --text-color: #000000;
+    --light-text-color: #131212;
+    --card-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    color: #0d0e0d;
+    text-shadow: 0 0 20px #e1e1e1;
+}
+
+button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    /* Regular */
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    /* Regular */
+    line-height: 1.6;
+    /* Improves readability */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 3rem;
+    margin-left: 23%;
+    margin-right: 2%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Greeting Section */
+.greetingContainer {
+    padding: 2rem 2.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2.5rem;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.greetingContainer h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.greetingContainer p {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    margin: 0.3rem 0;
+    font-weight: 500;
+}
+
+/* Grid for Key Metrics */
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+}
+
+.gridContainer > div {
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    padding: 1.8rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.gridContainer > div:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.gridContainer h3 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.gridContainer p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.newContainer{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.newContainer > div {
+    background: var(--card-bg);
+    border: 1px solid var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.newContainer > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card styles for each metric */
+.progressContainer,
+.healthContainer,
+.taskContainer,
+.AnalyticsContainer {
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    padding: 1.8rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.progressContainer:hover,
+.healthContainer:hover,
+.taskContainer:hover,
+.AnalyticsContainer:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.progressContainer h3,
+.healthContainer h3,
+.taskContainer h3,
+.AnalyticsContainer h3 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.progressContainer p,
+.healthContainer p,
+.taskContainer p,
+.AnalyticsContainer p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Weather & Alerts, Recent Activity, AI Recommendations, Calendar Preview */
+.weatherContainer,
+.ActivityContainer,
+.recommendContainer,
+.calenderContainer {
+    border: 2px solid var(--primary-color);
+    padding: 1.8rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+}
+
+.weatherContainer:hover,
+.ActivityContainer:hover,
+.recommendContainer:hover,
+.calenderContainer:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.weatherContainer h3,
+.ActivityContainer h3,
+.recommendContainer h3,
+.calenderContainer h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.weatherContainer ul,
+.ActivityContainer ul,
+.recommendContainer ul,
+.calenderContainer ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.weatherContainer ul li,
+.ActivityContainer ul li,
+.recommendContainer ul li,
+.calenderContainer ul li {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+    .greetingContainer h1 {
+        font-size: 2rem;
+    }
+
+    .progressContainer h3,
+    .healthContainer h3,
+    .taskContainer h3,
+    .AnalyticsContainer h3,
+    .weatherContainer h3,
+    .ActivityContainer h3,
+    .recommendContainer h3,
+    .calenderContainer h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Scrollbar styling for overflow if needed */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Update Button */
+.updateButton {
+    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(4, 93, 31, 0.3);
+    margin: 2rem auto;
+    display: block;
+    width: fit-content;
+}
+
+.updateButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 93, 31, 0.4);
+    background: linear-gradient(135deg, #2d5a3d, var(--primary-color));
+}
+
+.updateButton:active {
+    transform: translateY(0);
+}
+
+/* Welcome message styling */
+.container h1 {
+    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.container p {
+    text-align: center;
+    color: var(--light-text-color);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.lastUpdated {
+    text-align: right;
+    color: var(--light-text-color);
+    font-size: 0.9rem;
+}
+
+/* Loading and Error States */
+.loadingContainer, .errorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--secondary-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.retryBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.retryBtn:hover {
+    background: #2d5a3d;
+    transform: translateY(-2px);
+}
+
+/* Stat Cards */
+.statCard {
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    padding: 1.8rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    text-align: center;
+}
+
+.statCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.statSubtext {
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+    margin: 0;
+}
+
+/* Activity Items */
+.activityIcon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.activityTime {
+    float: right;
+    font-size: 0.8rem;
+    color: var(--light-text-color);
+}
+
+/* Task Priority Indicators */
+.taskPriority {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.taskPriority[data-priority="high"] {
+    background-color: #dc3545;
+}
+
+.taskPriority[data-priority="medium"] {
+    background-color: #ffc107;
+}
+
+.taskPriority[data-priority="low"] {
+    background-color: #28a745;
+}
+
+.taskDate {
+    float: right;
+    font-size: 0.8rem;
+    color: var(--light-text-color);
+}
+
+/* Button Container */
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Logout Button */
+.logoutButton {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logoutButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    background: linear-gradient(135deg, #c82333, #dc3545);
+}
+
+.logoutButton:active {
+    transform: translateY(0);
+}
