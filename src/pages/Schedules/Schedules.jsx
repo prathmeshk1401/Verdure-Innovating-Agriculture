@@ -24,13 +24,20 @@ const Schedules = () => {
     const fetchSchedules = async () => {
         try {
             setLoading(true);
-            const res = await axios.get("/api/schedules", {
+            setError(""); // Clear previous errors
+            const res = await axios.get("/api/schedule", {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            setSchedules(res.data || []);
+            
+            // Ensure schedules is always an array (handle common API response structures)
+            const data = Array.isArray(res.data) 
+                ? res.data 
+                : (res.data?.schedules || res.data || []);
+            setSchedules(data);
         } catch (err) {
             setError("Failed to load schedules. Please try again.");
             console.error(err);
+            setSchedules([]); // Explicitly set to empty array on error
         } finally {
             setLoading(false);
         }
@@ -41,7 +48,7 @@ const Schedules = () => {
         try {
             if (!newTask.title || !newTask.description) return;
 
-            await axios.post("/api/schedules", newTask, {
+            await axios.post("/api/schedule", newTask, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -58,7 +65,7 @@ const Schedules = () => {
     // Handle completing a task
     const handleCompleteTask = async (taskId) => {
         try {
-            await axios.put(`/api/schedules/${taskId}/complete`, {}, {
+            await axios.post(`/api/schedule/${taskId}/complete`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             await fetchSchedules();
@@ -73,7 +80,7 @@ const Schedules = () => {
         if (!window.confirm("Are you sure you want to delete this task?")) return;
 
         try {
-            await axios.delete(`/api/schedules/${taskId}`, {
+            await axios.delete(`/api/schedule/${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             await fetchSchedules();
@@ -83,8 +90,10 @@ const Schedules = () => {
         }
     };
 
-    // Filter tasks based on active category
+    // Filter tasks based on active category (with safeguard)
     const getFilteredTasks = () => {
+        if (!Array.isArray(schedules)) return []; // Safeguard: return empty array if not array
+
         const now = new Date();
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         const weekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -107,8 +116,12 @@ const Schedules = () => {
         }
     };
 
-    // Get quick stats
+    // Get quick stats (with safeguard)
     const getStats = () => {
+        if (!Array.isArray(schedules)) {
+            return { todayTasks: 0, completedThisWeek: 0, overdueTasks: 0 }; // Safeguard: return zeros if not array
+        }
+
         const now = new Date();
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -131,7 +144,12 @@ const Schedules = () => {
     };
 
     useEffect(() => {
-        fetchSchedules();
+        if (token) {
+            fetchSchedules();
+        } else {
+            setLoading(false);
+            setSchedules([]);
+        }
     }, [token]);
 
     if (loading) return <Loader />;

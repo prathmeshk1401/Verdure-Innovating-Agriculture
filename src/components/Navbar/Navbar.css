@@ -34,11 +34,10 @@ body {
     height: 80px;
     width: 92%;
     margin: 20px auto;
-
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
-
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
@@ -47,7 +46,7 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* Logo Centered */
+/* Logo Centered
 #logo {
     height: 70px;
     width: auto;
@@ -58,5 +57,5 @@ body {
 }
 
 #logo:hover {
-    transform: scale(1.08);
-}
+    transform: scale(1.08); 
+}*/

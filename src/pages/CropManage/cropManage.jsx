@@ -55,7 +55,7 @@ const CropManagement = () => {
             // Refresh crops list
             await fetchCrops();
             setNewCrop({ name: "", soil: "", stage: "", lastActivity: "", nextTask: "" });
-            setShowAddModal(false);
+            setShowAddModal(true);
         } catch (err) {
             setError("Failed to add crop. Please try again.");
             console.error(err);

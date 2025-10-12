@@ -64,9 +64,9 @@ const Forum = () => {
     if (error) {
         return (
             <div className={styles["farmer-forum"]}>
-                <div className="error-container">
+                <div className={styles.errorContainer}>
                     <h3>❌ {error}</h3>
-                    <button onClick={fetchForumData} className="btn btn-primary">
+                    <button onClick={fetchForumData} className={`${styles.btn} ${styles.btnPrimary}`}>
                         Try Again
                     </button>
                 </div>
@@ -84,10 +84,10 @@ const Forum = () => {
                 <h1>Verdure Farm Connect</h1>
                 <p>Join our community of farmers sharing knowledge, experience, and support</p>
                 <div className={styles["button-container"]}>
-                    <button onClick={() => setShowNewPostModal(true)} className="btn btn-primary">
+                    <button onClick={() => setShowNewPostModal(true)} className={`${styles.btn} ${styles.btnPrimary}`}>
                         Start a Discussion
                     </button>
-                    <button className="btn btn-secondary">Browse Topics</button>
+                    <button className={`${styles.btn} ${styles.btnSecondary}`}>Browse Topics</button>
                 </div>
             </header>
 
@@ -143,7 +143,7 @@ const Forum = () => {
                                 </div>
                             ))
                         ) : (
-                            <div className="text-center">
+                            <div className={styles.textCenter}>
                                 <p>No discussions available. Start the conversation!</p>
                             </div>
                         )}
@@ -157,17 +157,17 @@ const Forum = () => {
                             <div className={styles["vendor-card"]}>
                                 <h3>Green Harvest Supplies</h3>
                                 <p>Specializes in organic produce procurement</p>
-                                <button>Start Chat</button>
+                                <button className={styles.startChatButton}>Start Chat</button>
                             </div>
                             <div className={styles["vendor-card"]}>
                                 <h3>AgroTrade Co.</h3>
                                 <p>Buys grains and pulses at competitive rates</p>
-                                <button>Start Chat</button>
+                                <button className={styles.startChatButton}>Start Chat</button>
                             </div>
                             <div className={styles["vendor-card"]}>
                                 <h3>SpiceWorld Traders</h3>
                                 <p>Looking for quality spices for export</p>
-                                <button>Start Chat</button>
+                                <button className={styles.startChatButton}>Start Chat</button>
                             </div>
                         </div>
 
@@ -184,8 +184,8 @@ const Forum = () => {
                                 </div>
                             </div>
                             <div className={styles["chat-input"]}>
-                                <input type="text" placeholder="Type your message..." />
-                                <button>Send</button>
+                                <input type="text" placeholder="Type your message..." className={styles.chatInput} />
+                                <button className={styles.sendButton}>Send</button>
                             </div>
                         </div>
                     </div>
@@ -235,6 +235,47 @@ const Forum = () => {
                     </div>
                 </section>
             </main>
+
+            {showNewPostModal && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modal}>
+                        <h3>Create New Post</h3>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={newPost.title}
+                            onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+                            className={styles.input}
+                        />
+                        <textarea
+                            placeholder="Content"
+                            value={newPost.content}
+                            onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+                            className={styles.textarea}
+                            rows="5"
+                        />
+                        <select
+                            value={newPost.category}
+                            onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
+                            className={styles.select}
+                        >
+                            <option value="community">Community</option>
+                            <option value="harvest">Harvest</option>
+                            <option value="weather">Weather</option>
+                            <option value="marketplace">Marketplace</option>
+                            <option value="success">Success Stories</option>
+                        </select>
+                        <div className={styles.modalButtons}>
+                            <button onClick={handleCreatePost} className={`${styles.btn} ${styles.btnPrimary}`}>
+                                Post
+                            </button>
+                            <button onClick={() => setShowNewPostModal(false)} className={`${styles.btn} ${styles.btnSecondary}`}>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

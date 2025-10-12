@@ -14,13 +14,17 @@ const Notifications = () => {
     const fetchNotifications = async () => {
         try {
             setLoading(true);
+            setError(""); // Clear previous errors
             const res = await axios.get("/api/notifications", {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            setNotifications(res.data || []);
+            // Ensure notifications is always an array
+            const data = Array.isArray(res.data) ? res.data : [];
+            setNotifications(data);
         } catch (err) {
             setError("Failed to load notifications. Please try again.");
             console.error(err);
+            setNotifications([]); // Reset to empty array on error
         } finally {
             setLoading(false);
         }
@@ -54,16 +58,39 @@ const Notifications = () => {
         }
     };
 
+    // Safe filter function to ensure notifications is an array
+    const safeFilter = (predicate) => {
+        if (!Array.isArray(notifications)) {
+            return [];
+        }
+        return notifications.filter(predicate);
+    };
+
     // Filter notifications based on selected filter
     const getFilteredNotifications = () => {
         switch (filter) {
             case "unread":
-                return notifications.filter(notification => !notification.read);
+                return safeFilter(notification => !notification.read);
             case "read":
-                return notifications.filter(notification => notification.read);
+                return safeFilter(notification => notification.read);
             default:
-                return notifications;
+                return safeFilter(() => true); // Return all
         }
+    };
+
+    // Get unread count safely
+    const getUnreadCount = () => {
+        return safeFilter(n => !n.read).length;
+    };
+
+    // Get read count safely
+    const getReadCount = () => {
+        return safeFilter(n => n.read).length;
+    };
+
+    // Get total count safely
+    const getTotalCount = () => {
+        return Array.isArray(notifications) ? notifications.length : 0;
     };
 
     // Get notification icon based on type
@@ -87,14 +114,19 @@ const Notifications = () => {
     };
 
     useEffect(() => {
-        fetchNotifications();
+        if (token) {
+            fetchNotifications();
+        } else {
+            setLoading(false);
+            setError("No authentication token found. Please log in.");
+        }
     }, [token]);
 
     if (loading) {
         return (
             <div className={styles["notifications-page"]}>
-                <div className="loading-container">
-                    <div className="spinner"></div>
+                <div className={styles["loading-container"]}>
+                    <div className={styles["spinner"]}></div>
                     <p>Loading notifications...</p>
                 </div>
             </div>
@@ -104,9 +136,9 @@ const Notifications = () => {
     if (error) {
         return (
             <div className={styles["notifications-page"]}>
-                <div className="error-container">
+                <div className={styles["error-container"]}>
                     <h3>❌ {error}</h3>
-                    <button onClick={fetchNotifications} className="btn btn-primary">
+                    <button onClick={fetchNotifications} className={`${styles["btn"]} ${styles["btn-primary"]}`}>
                         Try Again
                     </button>
                 </div>
@@ -126,22 +158,22 @@ const Notifications = () => {
             {/* Filter Tabs */}
             <div className={styles["notification-filters"]}>
                 <button
-                    className={styles["filter-tab"] + " " + (filter === "all" ? styles.active : "")}
+                    className={`${styles["filter-tab"]} ${filter === "all" ? styles.active : ""}`}
                     onClick={() => setFilter("all")}
                 >
-                    All ({notifications.length})
+                    All ({getTotalCount()})
                 </button>
                 <button
-                    className={styles["filter-tab"] + " " + (filter === "unread" ? styles.active : "")}
+                    className={`${styles["filter-tab"]} ${filter === "unread" ? styles.active : ""}`}
                     onClick={() => setFilter("unread")}
                 >
-                    Unread ({notifications.filter(n => !n.read).length})
+                    Unread ({getUnreadCount()})
                 </button>
                 <button
-                    className={styles["filter-tab"] + " " + (filter === "read" ? styles.active : "")}
+                    className={`${styles["filter-tab"]} ${filter === "read" ? styles.active : ""}`}
                     onClick={() => setFilter("read")}
                 >
-                    Read ({notifications.filter(n => n.read).length})
+                    Read ({getReadCount()})
                 </button>
             </div>
 
@@ -202,15 +234,15 @@ const Notifications = () => {
             {/* Quick Stats */}
             <div className={styles["notification-stats"]}>
                 <div className={styles["stat-item"]}>
-                    <span className={styles["stat-number"]}>{notifications.filter(n => !n.read).length}</span>
+                    <span className={styles["stat-number"]}>{getUnreadCount()}</span>
                     <span className={styles["stat-label"]}>Unread</span>
                 </div>
                 <div className={styles["stat-item"]}>
-                    <span className={styles["stat-number"]}>{notifications.filter(n => n.read).length}</span>
+                    <span className={styles["stat-number"]}>{getReadCount()}</span>
                     <span className={styles["stat-label"]}>Read</span>
                 </div>
                 <div className={styles["stat-item"]}>
-                    <span className={styles["stat-number"]}>{notifications.length}</span>
+                    <span className={styles["stat-number"]}>{getTotalCount()}</span>
                     <span className={styles["stat-label"]}>Total</span>
                 </div>
             </div>

@@ -60,7 +60,7 @@ const services = [
         desc: "Sell your crops directly to consumers and businesses.",
     },
     {
-        to: "/agroWeather",
+        to: "/Weather",
         img: "agroWeather.jpg",
         alt: "Local weather updates for farmers",
         title: "Agro Weather",

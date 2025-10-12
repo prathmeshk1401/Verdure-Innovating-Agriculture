@@ -5,20 +5,21 @@
     --background-color: #d7dbd9;
     --text-color: #000000;
     --light-text-color: #131212;
-    --card-bg: #fff;
+    --card-bg: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, #4CAF50 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, #e8f5e8 100%);
 }
 
 * {
     box-sizing: border-box;
 }
 
-body {
+/* body {
     margin: 0;
     font-family: var(--font-family);
-    background-color: var(--background-color);
     color: var(--text-color);
     scroll-behavior: smooth;
 }
@@ -28,112 +29,416 @@ h2,
 h3 {
     font-family: "DM Sans", sans-serif;
     font-weight: 700;
-    color: #0d0e0d;
-    text-shadow: 0 0 20px #e1e1e1;
+    color: var(--headline-color);
+    text-shadow: 0 0 20px rgba(225, 225, 225, 0.5);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 button {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 93, 31, 0.3);
 }
 
 input,
-textarea {
+textarea,
+select {
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    /* Regular */
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(4, 93, 31, 0.1);
+    transform: scale(1.02);
 }
 
 p {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     line-height: 1.6;
-}
+    color: var(--light-text-color);
+} */
 
-.analytics-container {
-    max-width: 1200px;
+/* Container */
+.analyticsContainer {
+    max-width: 1400px;
     margin: 2rem auto;
-    padding: 0 1.5rem 3rem;
+    padding: 20px;
     margin-left: 25%;
     margin-right: 2%;
     background: transparent;
     border: 2px solid #fff;
     border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px var(--shadow-color);
+    animation: fadeIn 0.5s ease;
+    overflow-y: auto;
+    height: 92vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.analytics-container h2 {
-    color: var(--primary-color);
-    font-weight: 700;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.analyticsHeader {
     text-align: center;
-    font-size: 2.5rem;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
 }
 
-.analytics-header p {
+.analyticsHeader p {
     text-align: center;
     font-size: 1.3rem;
-    color: var(--text-color);
-    
+    color: var(--light-text-color);
+    margin: 0;
+    font-style: italic;
 }
 
-.analytics-filters {
+/* Filters */
+.analyticsFilters {
     font-size: 1.1rem;
     position: relative;
     left: 27%;
     top: 30px;
     padding: 20px;
-    background-color: var(--card-bg);
+    background: transparent;
     width: fit-content;
     border-radius: 20px;
     border: 2px solid var(--headline-color);
+    backdrop-filter: blur(10px);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: all 0.3s ease;
 }
 
-.analytics-select {
+.analyticsFilters:hover {
+    box-shadow: 0 6px 25px rgba(3, 79, 26, 0.2);
+}
+
+.analyticsFilters label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: var(--headline-color);
+    gap: 5px;
+    min-width: 150px;
+}
+
+.analyticsSelect {
     border: 2px solid #000;
     border-radius: 10px;
     cursor: pointer;
-    width: 100px;
-    height: 25px;
-    margin: 10px;
-    background: transparent;
-    text-align: center;
+    width: 150px;
+    height: 40px;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.2);
+    text-align: left;
     font-weight: 300;
+    color: var(--text-color);
+    padding-left: 10px;
 }
 
-.analytics-select:hover {
+.analyticsSelect:hover {
     border: 2px solid var(--headline-color);
+    background: rgba(255, 255, 255, 0.3);
 }
 
-.metric-card {
-    background: var(--card-bg);
+/* Metrics */
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    justify-content: space-around;
+    width: 80%;
+    margin: 5% auto;
+    max-width: 1200px;
+}
+
+.metricCard {
+    background: transparent;
     border: 2px solid var(--headline-color);
     border-radius: 20px;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.grid-container {
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    gap: 1.8rem;
-    display: grid;
-    justify-content: space-around;
-    width: 30%;
-    margin-top: 5%;
-    margin-left: 15%;
+.metricCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
 }
 
+.metricCard:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
 
-.analytics-chart h3 {
-    margin-top: 5%;
+.metricCard h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--headline-color);
+    font-weight: 600;
+}
+
+.metricCard p {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 0 2px 4px var(--shadow-color);
+}
+
+/* Chart */
+.analyticsChart {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.analyticsChart h3 {
+    margin: 0 0 20px 0;
     color: var(--primary-color);
     font-weight: 700;
     font-size: 1.7rem;
+    text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.analyticsChart h3::before {
+    content: '📊';
 }
 
 .graph {
-    width: 80%;
-    height: 100%;
+    width: 100%;
+    height: 400px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 0 2px 10px var(--shadow-color);
+    overflow: hidden;
+}
+
+/* Insights */
+.analyticsInsights {
+    background: var(--gradient-secondary);
+    padding: 25px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 90%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.analyticsInsights h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+    color: var(--headline-color);
+    text-align: center;
+}
+
+.analyticsInsights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.analyticsInsights li {
+    padding: 12px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 25px;
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.analyticsInsights li:nth-child(1) { animation-delay: 0.1s; }
+.analyticsInsights li:nth-child(2) { animation-delay: 0.2s; }
+.analyticsInsights li:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.analyticsInsights li::before {
+    content: '💡';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.analyticsInsights li:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+/* Loading + Error */
+.loadingContainer,
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    text-align: center;
+    background: transparent;
+    color: var(--headline-color);
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.errorContainer {
+    color: #d32f2f;
+}
+
+.errorContainer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.retryButton {
+    background: var(--gradient-primary);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+/* Utility */
+.textCenter {
+    text-align: center;
+    color: var(--light-text-color);
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .analyticsContainer {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 10px;
+    }
+
+    .analyticsHeader h2 {
+        font-size: 2rem;
+    }
+
+    .analyticsFilters {
+        left: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 90%;
+    }
+
+    .analyticsSelect {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+        width: 95%;
+        margin: 5% auto;
+    }
+
+    .graph {
+        height: 300px;
+    }
+
+    .analyticsInsights {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .analyticsHeader h2 {
+        font-size: 1.5rem;
+    }
+
+    .analyticsChart {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
 }

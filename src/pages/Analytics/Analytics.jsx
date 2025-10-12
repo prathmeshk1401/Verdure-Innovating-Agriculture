@@ -105,9 +105,9 @@ const Analytics = () => {
 
     if (loading) {
         return (
-            <div className={styles["analytics-container"]}>
-                <div className="loading-container">
-                    <div className="spinner"></div>
+            <div className={styles.analyticsContainer}>
+                <div className={styles.loadingContainer}>
+                    <div className={styles.spinner}></div>
                     <p>Loading analytics data...</p>
                 </div>
             </div>
@@ -116,10 +116,10 @@ const Analytics = () => {
 
     if (error) {
         return (
-            <div className={styles["analytics-container"]}>
-                <div className="error-container">
+            <div className={styles.analyticsContainer}>
+                <div className={styles.errorContainer}>
                     <h3>❌ {error}</h3>
-                    <button onClick={fetchAnalytics} className="btn btn-primary">
+                    <button onClick={fetchAnalytics} className={styles.retryButton}>
                         Try Again
                     </button>
                 </div>
@@ -131,19 +131,19 @@ const Analytics = () => {
     const chartData = prepareChartData();
 
     return (
-        <div className={styles["analytics-container"]}>
+        <div className={styles.analyticsContainer}>
             {/* Header */}
-            <header className={styles["analytics-header"]}>
+            <header className={styles.analyticsHeader}>
                 <h2>Analytics Dashboard</h2>
                 <p>Track and visualize your crop and revenue performance</p>
             </header>
 
             {/* Filters */}
-            <div className={styles["analytics-filters"]}>
+            <div className={styles.analyticsFilters}>
                 <label>
                     Select Crop:
                     <select
-                        className={styles["analytics-select"]}
+                        className={styles.analyticsSelect}
                         value={selectedCrop}
                         onChange={(e) => setSelectedCrop(e.target.value)}
                     >
@@ -158,7 +158,7 @@ const Analytics = () => {
                 <label>
                     Time Period:
                     <select
-                        className={styles["analytics-select"]}
+                        className={styles.analyticsSelect}
                         value={timePeriod}
                         onChange={(e) => setTimePeriod(e.target.value)}
                     >
@@ -170,33 +170,33 @@ const Analytics = () => {
             </div>
 
             {/* Key Metrics */}
-            <div className={styles["grid-container"]}>
-                <div className={styles["metric-card"]}>
+            <div className={styles.gridContainer}>
+                <div className={styles.metricCard}>
                     <h3>Total Yield</h3>
                     <p>{metrics.totalYield || "0 kg"}</p>
                 </div>
-                <div className={styles["metric-card"]}>
+                <div className={styles.metricCard}>
                     <h3>Total Revenue</h3>
                     <p>{metrics.totalRevenue || "₹0"}</p>
                 </div>
-                <div className={styles["metric-card"]}>
+                <div className={styles.metricCard}>
                     <h3>Average Growth Rate</h3>
                     <p>{metrics.growthRate || "0%"}</p>
                 </div>
-                <div className={styles["metric-card"]}>
+                <div className={styles.metricCard}>
                     <h3>Profit Margin</h3>
                     <p>{metrics.profitMargin || "0%"}</p>
                 </div>
             </div>
 
             {/* Chart */}
-            <div className={styles["analytics-chart"]}>
+            <div className={styles.analyticsChart}>
                 <h3>Performance Chart</h3>
-                <div className={styles["graph"]}>
+                <div className={styles.graph}>
                     {chartData.labels.length > 0 ? (
                         <Line data={chartData} options={chartOptions} />
                     ) : (
-                        <div className="text-center">
+                        <div className={styles.noData}>
                             <p>No data available for the selected period and crop.</p>
                         </div>
                     )}
@@ -205,7 +205,7 @@ const Analytics = () => {
 
             {/* Additional Analytics */}
             {analyticsData?.insights && (
-                <div className={styles["analytics-insights"]}>
+                <div className={styles.analyticsInsights}>
                     <h3>AI Insights</h3>
                     <ul>
                         {analyticsData.insights.map((insight, index) => (

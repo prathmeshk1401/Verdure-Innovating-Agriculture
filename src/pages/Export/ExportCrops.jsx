@@ -7,8 +7,26 @@ export default function ExportCrops() {
     const [successStories, setSuccessStories] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/crops").then((res) => setCropData(res.data));
-        axios.get("/api/success-stories").then((res) => setSuccessStories(res.data));
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem("verdure_token");
+                const headers = token ? { Authorization: `Bearer ${token}` } : {};
+                
+                const [cropsRes, storiesRes] = await Promise.all([
+                    axios.get("/api/crops", { headers }),
+                    axios.get("/api/success-stories", { headers })
+                ]);
+                
+                setCropData(cropsRes.data || []);
+                setSuccessStories(storiesRes.data || []);
+            } catch (err) {
+                console.error("Failed to fetch export data:", err);
+                setCropData([]);
+                setSuccessStories([]);
+            }
+        };
+        
+        fetchData();
     }, []);
 
     return (

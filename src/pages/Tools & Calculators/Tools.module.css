@@ -1,206 +1,365 @@
+/* Tools.module.css */
+body{
+    backdrop-filter: blur(10px);
+}
+
+
 :root {
     --primary-color: #045d1f;
+    --headline-color: #034f1a;
     --secondary-color: #aeccb8;
     --background-color: #d7dbd9;
     --text-color: #000000;
     --light-text-color: #131212;
-    --card-bg: #fff;
+    --card-bg: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-color);
-    scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-    color: #0d0e0d;
-    text-shadow: 0 0 20px #e1e1e1;
-}
-
-button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-}
-
-input,
-textarea {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    /* Regular */
-}
-
-p {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-* {
-    box-sizing: border-box;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, #4CAF50 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, #e8f5e8 100%);
 }
 
 .toolsContainer {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 2rem auto;
-    padding: 1.5rem;
+    padding: 20px;
     background: transparent;
-    border-radius: var(--border-radius);
     border: 2px solid #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px var(--shadow-color);
+    animation: fadeIn 0.5s ease;
+    font-family: var(--font-family);
+    color: var(--text-color);
     position: relative;
-    left: 10%;
+    left: 20%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .toolsContainer h1 {
     text-align: center;
-    padding-bottom: 1rem;
-}
-
-.toolsContainer h1 {
-    margin: 0;
     font-size: 2.5rem;
     color: var(--primary-color);
-    letter-spacing: 1.5px;
-}
-
-.schedulesHeader p {
-    margin-top: 0.5rem;
-    font-size: 1.1rem;
-    color: #555;
-}
-
-
-/* Tool buttons */
-.tool-button {
-    padding: 12px 20px;
-    cursor: pointer;
-    border: 2px solid #4caf50;
-    border-radius: 12px;
-    background-color: #a3c293;
-    color: #1b3a1b;
-    font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    user-select: none;
-}
-
-.tool-button:hover {
-    background-color: #4caf50;
-    color: #f0f8f5;
-    border-color: #3a7d3a;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.tool-button.selected {
-    background-color: #2f4f2f;
-    color: #d4f1d4;
-    border-color: #1b3a1b;
-    box-shadow: 0 0 10px #2f4f2f;
-}
-
-/* Tool input section */
-.tool-section {
-    max-width: 480px;
-    margin: 0 auto 30px auto;
-    padding: 20px;
-    background-color: #d9ead3;
-    border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
-
-.tool-section h2 {
-    margin-bottom: 15px;
-    color: #1b3a1b;
-}
-
-/* Inputs */
-input {
-    width: 50%;
-    height: 50px;
-    padding: 10px 12px;
-    margin: 5px 0 15px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 16px;
-    display: block;
-}
-
-button{
-    padding: 10px 15px; 
-    cursor: pointer; 
-    border: 1px solid #ccc; 
-    border-radius:8px;
-    margin: 5px;
-}
-
-/* Calculate button */
-.calculate-button {
-    padding: 10px 18px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: #f0f8f5;
+    margin-bottom: 30px;
+    background-clip: text;
+    font-family: "DM Sans", sans-serif;
     font-weight: 700;
+}
+
+/* Tool Buttons Grid */
+.toolsContainer > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toolButton {
+    background: var(--gradient-primary);
+    color: white;
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(76, 175, 80, 0.6);
-    transition: background-color 0.3s ease;
-    user-select: none;
-}
-
-.calculate-button:hover {
-    background-color: #3a7d3a;
-}
-
-/* Result box */
-.result-box {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #e6f0e6;
-    border-radius: 15px;
-    border: 2px solid #4caf50;
-    color: #2f4f2f;
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
     font-weight: 600;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(4, 93, 31, 0.3);
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.toolButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.toolButton:hover::before {
+    left: 100%;
+}
+
+.toolButton:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(4, 93, 31, 0.4);
+    background: linear-gradient(135deg, #6fbe3a 0%, var(--secondary-color) 100%);
+}
+
+.toolButton:active {
+    transform: translateY(-1px) scale(1);
+}
+
+/* Tool Input Section */
+.toolInputSection {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--headline-color);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toolInputSection h2 {
+    text-align: center;
+    color: var(--headline-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+
+.toolInput {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
-.result-box h3 {
-    margin-bottom: 10px;
+.toolInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(4, 93, 31, 0.1);
+    transform: scale(1.02);
 }
 
-/* Disease detection image */
-.disease-image {
-    width: 200px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    display: block;
-    margin: 15px auto 0 auto;
+.toolInput::placeholder {
+    color: var(--light-text-color);
+    opacity: 0.7;
 }
 
-/* Disease result text */
-.disease-result-text {
-    font-weight: 700;
+.calculateButton {
+    width: 100%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: var(--border-radius);
     font-size: 1.1rem;
-    margin-top: 12px;
-    color: #3a7d3a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(4, 93, 31, 0.3);
+    font-family: "Montserrat", sans-serif;
+    margin-top: 10px;
+}
+
+.calculateButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(4, 93, 31, 0.4);
+    background: linear-gradient(135deg, #034f1a 0%, var(--primary-color) 100%);
+}
+
+/* Disease Detection Section */
+.diseaseDetectionSection {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--headline-color);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    box-shadow: 0 8px 25px var(--shadow-color);
     text-align: center;
+    animation: slideUp 0.4s ease;
+}
+
+.diseaseDetectionSection h2 {
+    color: var(--headline-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+
+.fileInput {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.fileInput:hover {
+    border-color: var(--headline-color);
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.01);
+}
+
+.fileInput::-webkit-file-upload-button {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-family: "Montserrat", sans-serif;
+    transition: background 0.3s ease;
+}
+
+.fileInput::-webkit-file-upload-button:hover {
+    background: linear-gradient(135deg, #034f1a 0%, var(--primary-color) 100%);
+}
+
+/* Disease Image Preview */
+.diseaseImagePreview {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    animation: fadeInImage 0.5s ease;
+}
+
+@keyframes fadeInImage {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.diseaseImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.diseaseImage:hover {
+    transform: scale(1.05);
+}
+
+.diseaseDetectionSection p {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    background: var(--gradient-secondary);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border-left: 4px solid var(--primary-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Result Section */
+.resultSection {
+    background: var(--gradient-secondary);
+    padding: 25px;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 800px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+    animation: slideUp 0.5s ease;
+    text-align: center;
+}
+
+.resultSection h3 {
+    color: var(--headline-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+
+.resultSection p {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    line-height: 1.6;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .toolsContainer {
+        margin: 1rem;
+        padding: 15px;
+    }
+
+    .toolsContainer h1 {
+        font-size: 2rem;
+    }
+
+    .toolsContainer > div {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .toolInputSection,
+    .diseaseDetectionSection {
+        padding: 20px;
+        margin: 0 10px 20px;
+    }
+
+    .toolInput {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .diseaseImage {
+        max-height: 200px;
+    }
+
+    .resultSection {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toolsContainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .toolButton,
+    .calculateButton {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .fileInput {
+        font-size: 16px;
+    }
 }

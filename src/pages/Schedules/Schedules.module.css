@@ -1,96 +1,94 @@
-/* src/Schedules/Schedules.module.css */
+/* Schedules.module.css */
 
+/* CSS Variables - Adapted from provided styles for earthy green theme */
 :root {
     --primary-color: #045d1f;
+    /* Dark green for primary elements */
     --secondary-color: #aeccb8;
+    /* Light green for accents */
     --background-color: #d7dbd9;
+    /* Light gray background */
     --text-color: #000000;
+    /* Dark text */
     --light-text-color: #131212;
+    /* Slightly lighter dark text */
     --card-bg: #fff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-radius: 12px;
-    --border: #ddd;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* White for cards */
     --completed-color: #cde6e1;
+    /* Light green for completed tasks */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    --border-radius: 12px;
+    /* Rounded corners */
+    --border: #ddd;
+    /* Light border */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transition: all 0.3s ease;
 }
 
+/* Global reset for box-sizing */
 * {
     box-sizing: border-box;
 }
 
-.schedulesContainer {
+/* Main Container - Adapted to transparent with subtle shadow and border */
+.schedules-container {
     max-width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
     background: transparent;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px var(--shadow-color);
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     gap: 2rem;
     position: relative;
     left: 10%;
+    /* As in provided, but adjust if needed for centering */
     border: 2px solid #fff;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    overflow-y: auto;
+    height: 92vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-/* Header */
-.schedulesHeaderContainer {
+/* Header - Centered with border-bottom */
+.schedules-header {
     text-align: center;
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 1rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-.schedulesHeader h2 {
+.schedules-header h1 {
     margin: 0;
     font-size: 2.5rem;
     color: var(--primary-color);
     letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.schedulesHeader p {
+.schedules-header h1 img {
+    width: 40px;
+    height: 40px;
+}
+
+.schedules-header p {
     margin-top: 0.5rem;
     font-size: 1.1rem;
     color: #555;
 }
 
-/* Add Task Section */
-.schedulesAdd {
-    display: grid;
-    grid-template-columns: 2fr 1.5fr auto;
-    gap: 1rem;
-    align-items: center;
-    background-color: #f9fdf7;
-    padding: 1rem 1.5rem;
-    border-radius: var(--border-radius);
-    border: 2px solid var(--primary-color);
-}
-
-.schedulesAdd h3 {
-    grid-column: 1 / -1;
-    margin: 0 0 0.75rem 0;
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 1.4rem;
-}
-
-.taskInput,
-.dateInput {
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    transition: border-color 0.3s ease;
-    outline: none;
-    width: 100%;
-}
-
-.taskInput:focus,
-.dateInput:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 5px var(--secondary-color);
-}
-
-.addBtn {
+/* Add Task Button - Styled like addBtn */
+.add-task-btn {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -99,109 +97,448 @@
     font-weight: 600;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    justify-self: start;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    margin-top: 1rem;
 }
 
-.addBtn:hover {
+.add-task-btn:hover {
     background-color: var(--secondary-color);
+    color: var(--text-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-/* Task List */
-.schedulesList {
-    background-color: #fff;
+/* Task Categories - Tab navigation with green accents */
+.task-categories {
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border);
+}
+
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.category-tab {
+    background: transparent;
+    color: var(--light-text-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+.category-tab:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.category-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Task List - Clean list with grid layout */
+.task-list {
+    background-color: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 1rem 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px var(--shadow-color);
     min-height: 200px;
+    border: 1px solid var(--border);
 }
 
-.schedulesList p {
+.task-list .text-center {
     text-align: center;
     font-size: 1.2rem;
     color: #777;
     margin: 2rem 0;
+    padding: 1rem;
 }
 
-.schedulesList ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.task-item {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 0.75rem 1rem;
     align-items: center;
-}
-
-.taskItem {
-    display: contents; /* To allow grid children to span */
-}
-
-.taskItem span {
     padding: 0.75rem 1rem;
     background-color: #f9fafb;
     border-radius: var(--border-radius);
-    font-size: 1.1rem;
-    color: var(--text-color);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: background-color 0.3s ease;
-    user-select: none;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    transition: var(--transition);
+    border: 1px solid var(--border);
 }
 
-.completed span {
+.task-item:hover {
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transform: translateY(-1px);
+}
+
+.task-item.completed {
     background-color: var(--completed-color);
-    color: #1b4332;
+    opacity: 0.8;
+}
+
+.task-item.completed .task-info h3,
+.task-item.completed .task-info p {
     text-decoration: line-through;
+    color: #1b4332;
     font-style: italic;
 }
 
-.toggleBtn {
+.task-info {
+    display: contents;
+    /* Allows grid children to span */
+}
+
+.task-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    grid-column: 1;
+}
+
+.task-info p {
+    margin: 0.25rem 0 0 0;
+    color: var(--light-text-color);
+    font-size: 0.95rem;
+    grid-column: 1;
+}
+
+.task-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.5rem;
+    grid-column: 1;
+}
+
+.task-date {
+    color: #555;
+    font-size: 0.9rem;
+    grid-column: 1;
+}
+
+.task-priority {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-self: end;
+    grid-column: 2;
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn {
     padding: 0.5rem 1.2rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     border: 2px solid var(--primary-color);
-    background-color: white;
-    color: var(--primary-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     justify-self: center;
-    user-select: none;
 }
 
-.toggleBtn:hover {
+.complete-btn {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.complete-btn:hover {
     background-color: var(--primary-color);
     color: white;
-    box-shadow: 0 4px 8px rgba(42, 157, 143, 0.4);
+    box-shadow: 0 4px 8px rgba(4, 93, 31, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .schedulesContainer {
+.edit-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+/* Quick Stats - Grid of cards with green theme */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1rem;
+    background: #f9fdf7;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transform: translateY(-2px);
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Modal - Overlay with form inputs styled like provided */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid var(--primary-color);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    outline: none;
+    background: #f9fdf7;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px var(--secondary-color);
+    background: white;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* Button styles for modal (adapting .btn classes) */
+.btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Error Container */
+.error-container {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 2px solid #dc3545;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.error-container h3 {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design - Adapted from provided */
+@media (max-width: 768px) {
+    .schedules-container {
         margin: 1rem;
+        padding: 1rem;
+        left: 0;
+        /* Remove left offset on mobile for better centering */
+        max-width: 100%;
+    }
+
+    .schedules-header h1 {
+        font-size: 2rem;
+    }
+
+    .category-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-tab {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .task-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    .task-actions {
+        justify-self: stretch;
+        justify-content: center;
+    }
+
+    .quick-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedules-header h1 {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .task-item {
         padding: 1rem;
     }
 
-    .schedulesAdd {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-
-    .schedulesAdd h3 {
-        grid-column: 1;
-    }
-
-    .addBtn {
-        justify-self: stretch;
-    }
-
-    .schedulesList ul {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .toggleBtn {
-        justify-self: end;
-        width: 100px;
+    .stat-number {
+        font-size: 2rem;
     }
 }

@@ -20,8 +20,9 @@ import newsIcon from "../../assets/icons/news.png";
 import importedCrop from "../../assets/icons/import-crop.png";
 import servicesIcon from "../../assets/icons/customer-service.png";
 import logoutIcon from "../../assets/icons/user-logout.png";
-// import verdure from "../../assets/VERDURE-logo.png"
-import verdure from "../../assets/icons/logistics.png"
+
+import verdure from "../../assets/VERDURE-logo.png"
+import exportCrop from "../../assets/icons/logistics.png"
 
 function Sidebar() {
     const [openServices, setOpenServices] = useState(false);
@@ -65,9 +66,7 @@ function Sidebar() {
 
     return (
         <div className={styles.sidebarContainer}>
-            <Link to="/dashboard" className={styles.logo}>
-                <img src="VERDURE-logo.png" alt="Logo" id="logo" />
-            </Link>
+            {/* <Link to={"/dashboard"} className='logo'> <img src={#} alt="logo" id="logo" className='logo'/></Link> */}
 
             <div className={styles.menuContainer}>
                 <Link to="/Dashboard" className={styles.menuItem}><img src={dashboardIcon} alt="dashboard" /><span>Dashboard</span></Link>
@@ -84,7 +83,7 @@ function Sidebar() {
 
                 {showMenu && (
                     <div className={styles.servicesContainer}>
-                        <Link to="/AgroWeather" className={`${styles.menuItem} ${styles.services}`}><img src={weatherIcon} alt="weather" /><span>Agro Weather</span></Link>
+                        <Link to="/Weather" className={`${styles.menuItem} ${styles.services}`}><img src={weatherIcon} alt="weather" /><span>Agro Weather</span></Link>
                         <Link to="/GlobalCrops" className={`${styles.menuItem} ${styles.services}`}><img src={importedCrop} alt="imported crop" /><span>Global Crops</span></Link>
                         <Link to="/ExportCrops" className={`${styles.menuItem} ${styles.services}`}><img src={exportCrop} alt="Export crop" /><span>Export Crops</span></Link>
                         <Link to="/SoilTesting" className={`${styles.menuItem} ${styles.services}`}><img src={soilIcon} alt="soil" /><span>Soil Testing</span></Link>

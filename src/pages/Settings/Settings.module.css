@@ -1,4 +1,5 @@
-/* Container */
+/* Settings.module.css */
+
 :root {
     --primary-color: #045d1f;
     --secondary-color: #aeccb8;
@@ -7,172 +8,514 @@
     --light-text-color: #131212;
     --card-bg: #fff;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #ccc;
     --border-radius: 12px;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --heading-font: "DM Sans", sans-serif;
+    --button-font: "Montserrat", sans-serif;
+    --text-font: "Inter", sans-serif;
+    --transition: all 0.3s ease-in-out;
+    --shadow-light: 0 4px 12px var(--shadow-color);
 }
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
+.settingsPage {
     font-family: var(--font-family);
-    background-color: var(--background-color);
     color: var(--text-color);
-    scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-    color: #0d0e0d;
-    text-shadow: 0 0 20px #e1e1e1;
-}
-
-button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-}
-
-input,
-textarea {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    /* Regular */
-}
-
-p {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 1.5rem;
     background: transparent;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 2px solid #fff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #2d3748;
+    box-shadow: var(--shadow-light);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
     position: relative;
     left: 10%;
-    top: 4px;
+    top: 3px;
+    height: 92vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+.settingsHeader {
+    border-bottom: 2px solid #034f1a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
 }
 
-.header h1 {
-    font-size: 2.5rem;
+.settingsHeader h2 {
+    font-family: var(--heading-font);
     font-weight: 700;
-    color: var(--primary-color);
-    /* dark green */
+    color: #034f1a;
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 20px #e1e1e1;
+    line-height: 1.2;
 }
 
-.languageSwitcher {
-    min-width: 150px;
+.settingsHeader p {
+    font-family: var(--text-font);
+    font-weight: 400;
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    line-height: 1.6;
+    opacity: 0.8;
 }
 
-.gtranslate {
-    width: 100%;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #cbd5e0;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-    background-color: white;
-    transition: border-color 0.3s ease;
+.errorMessage,
+.successMessage {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: var(--text-font);
+    font-weight: 500;
 }
 
-.gtranslate:hover {
-    border-color: #48bb78;
-    /* green */
+.errorMessage {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #f44336;
+}
+
+.successMessage {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .settingsSection {
-    background: white;
-    padding: 1.8rem 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.15);
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.settingsSection h2 {
-    font-size: 1.5rem;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sectionTitle {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: #034f1a;
+    font-size: 1.8rem;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 20px #e1e1e1;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.settingsCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+.settingsCard:hover {
+    box-shadow: 0 6px 20px var(--shadow-color);
+    transform: translateY(-2px);
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    font-family: var(--text-font);
     font-weight: 600;
-    margin-bottom: 1.2rem;
-    color: #22543d;
-    /* darker green */
+    color: var(--light-text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
-.form {
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--text-font);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #fafafa;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(4, 93, 31, 0.1);
+}
+
+.editable {
+    background: #fff !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(4, 93, 31, 0.1) !important;
+}
+
+.toggleGroup {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-label {
-    font-weight: 600;
-    color: #276749;
-}
-
-input[type="text"],
-input[type="email"],
-select {
-    padding: 0.6rem 1rem;
-    border: 1.5px solid #cbd5e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-select:focus {
-    outline: none;
-    border-color: #48bb78;
-    box-shadow: 0 0 5px #48bb78aa;
-}
-
-button{
-    background-color: var(--primary-color);
-    color: #fff;
-    border: 2px solid var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all .25s ease;
-}
-
-.saveBtn {
-    align-self: flex-start;
-    /* background-color: #38a169; */
-    color: white;
-    font-weight: 700;
-    padding: 0.75rem 2rem;
-    border: none;
-    border-radius: 10px;
+.toggleGroup label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--text-font);
+    font-weight: 500;
+    color: var(--light-text-color);
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.toggleGroup label:hover {
+    background: var(--secondary-color);
+}
+
+.toggleGroup input[type="checkbox"] {
+    width: auto;
+    transform: scale(1.2);
+    accent-color: var(--primary-color);
+}
+
+.passwordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.securityInfo {
+    font-family: var(--text-font);
+    color: var(--light-text-color);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: 6px;
+    opacity: 0.9;
+}
+
+.formActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
     margin-top: 1rem;
 }
 
-.saveBtn:hover {
-    background-color: var(--card-bg);
+.accountOption {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.accountOption:last-child {
+    border-bottom: none;
+}
+
+.accountOption:hover {
+    background: var(--secondary-color);
+    border-radius: 6px;
+}
+
+.accountOption h4 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.accountOption p {
+    font-family: var(--text-font);
+    color: var(--light-text-color);
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.actionBtn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--button-font);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--primary-color);
     border: 2px solid var(--primary-color);
+}
+
+.actionBtn:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.editBtn {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.editBtn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.saveBtn {
+    background: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+}
+
+.saveBtn:hover {
+    background: #034f1a;
+    border-color: #034f1a;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.cancelBtn {
+    background: #f5f5f5;
+    color: #666;
+    border: 2px solid #ddd;
+}
+
+.cancelBtn:hover {
+    background: #e0e0e0;
+    color: #333;
+    transform: translateY(-1px);
+}
+
+.deleteBtn {
+    background: #f44336;
+    color: #fff;
+    border: 2px solid #f44336;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--button-font);
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.deleteBtn:hover {
+    background: #d32f2f;
+    border-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    padding: 2rem;
+    background: transparent;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loadingContainer p {
+    font-family: var(--text-font);
+    color: var(--light-text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    padding: 2rem;
+    background: transparent;
+}
+
+.errorContainer h3 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: #f44336;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    text-shadow: 0 0 20px #e1e1e1;
+}
+
+@media (max-width: 768px) {
+    .settingsPage {
+        left: 0;
+        margin: 1rem;
+        padding: 1rem;
+        max-width: none;
+    }
+
+    .settingsHeader h2 {
+        font-size: 2rem;
+    }
+
+    .settingsHeader p {
+        font-size: 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .settingsCard {
+        padding: 1rem;
+    }
+
+    .formGroup {
+        margin-bottom: 1rem;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .toggleGroup {
+        gap: 0.75rem;
+    }
+
+    .toggleGroup label {
+        padding: 0.4rem;
+        font-size: 0.95rem;
+    }
+
+    .formActions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .accountOption {
+        padding: 1rem;
+    }
+
+    .accountOption h4 {
+        font-size: 1.1rem;
+    }
+
+    .actionBtn,
+    .editBtn,
+    .saveBtn,
+    .deleteBtn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .loadingContainer,
+    .errorContainer {
+        padding: 1rem;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .settingsPage {
+        margin: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .settingsHeader h2 {
+        font-size: 1.8rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.3rem;
+    }
+
+    .settingsCard {
+        padding: 0.75rem;
+    }
+
+    .formGroup label {
+        font-size: 0.95rem;
+    }
+
+    .toggleGroup label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .accountOption {
+        padding: 0.75rem;
+    }
+
+    .actionBtn,
+    .editBtn,
+    .saveBtn,
+    .deleteBtn {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
 }

@@ -55,15 +55,48 @@ p {
 
 .container {
     max-width: 1200px;
+    width: 1100px;
     margin: 2rem auto;
     padding: 0 1.5rem 3rem;
     margin-left: 23%;
-    margin-right: 2%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
+    position: relative;
+    right: 10%;
+    background: transparent;
+    border: 2px solid #fff;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+    overflow-y: auto;
+    height: 92vh;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container h2 {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 2rem;
+    position: relative;
+    left: 55%;
+    top: 20px;
+    margin-bottom: 40px;
+}
+
+.heading p {
+    position: relative;
+    left: 52%;
+}
+
 
 /* Greeting Section */
 .greetingContainer {
@@ -80,24 +113,18 @@ p {
     color: var(--primary-color);
 }
 
-.greetingContainer p {
-    font-size: 1.1rem;
-    color: var(--light-text-color);
-    margin: 0.3rem 0;
-    font-weight: 500;
-}
-
 /* Grid for Key Metrics */
 .gridContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
     gap: 1.8rem;
-    margin-bottom: 2.5rem;
     padding: 1rem;
 }
 
-.gridContainer > div {
+.gridContainer>div {
     background: var(--card-bg);
+    width: 100%;
+    height: 85%;
     border: 2px solid var(--primary-color);
     padding: 1.8rem 2rem;
     border-radius: var(--border-radius);
@@ -106,9 +133,10 @@ p {
     cursor: default;
 }
 
-.gridContainer > div:hover {
+.gridContainer>div:hover {
     transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 23px rgba(31, 160, 19, 0.15);
+    background-color: #d1e5d8;
 }
 
 .gridContainer h3 {
@@ -124,7 +152,7 @@ p {
     font-weight: 500;
 }
 
-.newContainer{
+.newContainer {
     display: grid;
     grid-template-columns: repeat(2, minmax(220px, 1fr));
     gap: 1.5rem;
@@ -136,7 +164,7 @@ p {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.newContainer > div {
+.newContainer>div {
     background: var(--card-bg);
     border: 1px solid var(--secondary-color);
     padding: 1.5rem;
@@ -145,7 +173,7 @@ p {
     transition: transform 0.2s ease;
 }
 
-.newContainer > div:hover {
+.newContainer>div:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -272,38 +300,9 @@ p {
     background: transparent;
 }
 
-/* Update Button */
-.updateButton {
-    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(4, 93, 31, 0.3);
-    margin: 2rem auto;
-    display: block;
-    width: fit-content;
-}
-
-.updateButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(4, 93, 31, 0.4);
-    background: linear-gradient(135deg, #2d5a3d, var(--primary-color));
-}
-
-.updateButton:active {
-    transform: translateY(0);
-}
 
 /* Welcome message styling */
 .container h1 {
-    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -312,9 +311,8 @@ p {
 
 .container p {
     text-align: center;
-    color: var(--light-text-color);
+    color: var(--text-color);
     font-size: 1.1rem;
-    margin-bottom: 2rem;
 }
 
 /* Header Section */
@@ -334,7 +332,8 @@ p {
 }
 
 /* Loading and Error States */
-.loadingContainer, .errorContainer {
+.loadingContainer,
+.errorContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -354,8 +353,13 @@ p {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .retryBtn {
@@ -368,7 +372,7 @@ p {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .retryBtn:hover {
@@ -468,15 +472,42 @@ p {
     box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    width: fit-content;
+    height: fit-content;
 }
 
 .logoutButton:hover {
-    transform: translateY(-2px);
+    transform: translateX(-2px);
     box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
-    background: linear-gradient(135deg, #c82333, #dc3545);
+    background: linear-gradient(135deg, #ce8c93, #dc051b);
 }
 
 .logoutButton:active {
+    transform: translateY(0);
+}
+
+
+/* Update Button */
+.updateButton {
+    background: linear-gradient(135deg, var(--primary-color), #2d5a3d);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(176, 232, 193, 0.3);
+    width: fit-content;
+}
+
+.updateButton:hover {
+    transform: translateX(-2px);
+    box-shadow: 0 6px 20px rgba(206, 245, 217, 0.4);
+    background: linear-gradient(135deg, #338751, #97cea9);
+}
+
+.updateButton:active {
     transform: translateY(0);
 }

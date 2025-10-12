@@ -79,14 +79,14 @@ const Dashboard = () => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <div>
-                    <h1>Welcome back, {user?.username || "Farmer"} 👋</h1>
+                <div className={styles.heading}>
+                    <h2>Welcome back, {user?.username || "Farmer"} 👋</h2>
                     <p>Date: <DisplayDate /></p>
-                    <p>Weather: <WeatherDisplay city={user?.city || "Mumbai"} /></p>
+                    <p className={styles.weatherP}>Weather: <WeatherDisplay city={user?.city || "Mumbai"} /></p>
                 </div>
-                <div className={styles.lastUpdated}>
+                {/* <div className={styles.lastUpdated}>
                     <p>Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleTimeString() : 'Never'}</p>
-                </div>
+                </div> */}
             </div>
 
             <div className={styles.gridContainer}>
@@ -166,10 +166,10 @@ const Dashboard = () => {
 
             <div className={styles.buttonContainer}>
                 <button onClick={handleRefresh} className={styles.updateButton} disabled={loading}>
-                    {loading ? "Refreshing..." : "🔄 Refresh Data"}
+                    {loading ? "Refreshing..." : "Refresh Page"}
                 </button>
                 <button onClick={handleLogout} className={styles.logoutButton}>
-                    🚪 Logout
+                    Logout
                 </button>
             </div>
         </div>

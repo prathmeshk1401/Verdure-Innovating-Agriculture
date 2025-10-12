@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import "./Navbar/Navbar.css"
 
 export default function Navbar() {
     const [showBottomBar, setShowBottomBar] = useState(true);
@@ -19,8 +20,8 @@ export default function Navbar() {
         <nav>
             <div className="nav-container">
                 {/* Logo */}
-                <Link to="/" className="logo-wrapper">
-                    <img src="VERDURE-logo.png" alt="Logo" id="logo" />
+                <Link to="/" className="Navlogo-wrapper">
+                    <img src="/VERDURE-logo.png" alt="Logo" id="logo" />
                 </Link>
 
                 {/* Desktop Links */}

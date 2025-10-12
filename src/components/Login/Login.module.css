@@ -28,15 +28,15 @@ body {
 
 
 .loginContainer {
-    /* position: relative; */
+    position: relative;
     width: 400px;
     background: #fff;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin: 200px auto 0 auto;
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 40%;
 }
 
 .signinForm {

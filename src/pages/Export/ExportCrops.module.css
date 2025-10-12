@@ -1,50 +1,80 @@
-/* ExportNavigator.module.css */
+/* ExportCrops.module.css */
 
-/* Base Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* CSS Variables for theming - Incorporating cooler, muted colors with subtle references to natural, professional tones 
+   (e.g., muted greens, cool blues, grays for a clean, transparent UI. Avoiding bright colors; using cold tones for buttons/links) */
+:root {
+    --primary-cool-green: #045d1f;
+    /* Muted teal-green for primary elements */
+    --secondary-cool-green: #6B8E23;
+    /* Olive green, subdued for accents */
+    --light-cool-mint: #E0F2E9;
+    /* Very light mint for subtle backgrounds */
+    --accent-cool-blue: #46b463;
+    /* Steel blue for links and buttons (cold tone) */
+    --accent-cool-gray: #5A6C7D;
+    /* Cool medium gray for secondary buttons/hovers */
+    --text-dark: #2C3E50;
+    /* Dark blue-gray for main text */
+    --text-light: #7F8C8D;
+    /* Cool gray for secondary text */
+    --bg-light: #FFFFFF;
+    /* Clean white for sections */
+    --bg-transparent: transparent;
+    /* Transparent background as requested */
+    --border-subtle: #E8ECEF;
+    /* Light cool border */
+    --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Minimal shadow */
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.08);
+    /* Subtle hover shadow */
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
-}
-
-/* Container */
+/* Container - Fully transparent background for clean integration */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: var(--bg-transparent);
+    border-radius: 20px;
+    border: 2px solid #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-y: auto;
+    position: relative;
+    left: 15%;
+    height: 92vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    top: 30px;
 }
 
-/* Sections */
+/* Sections - Minimalist, clean with subtle borders and no heavy backgrounds */
 .section {
-    background: white;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--bg-light);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
 }
 
 .section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-cool-green);
 }
 
-/* Headings */
+.section:last-child {
+    margin-bottom: 0;
+}
+
+/* Headings - Subdued, professional with cool green accent */
 .heading {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #2c5530;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-cool-green);
     margin-bottom: 1.5rem;
     text-align: center;
     position: relative;
@@ -53,149 +83,186 @@ body {
 .heading::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    width: 40px;
+    height: 2px;
+    background: var(--primary-cool-green);
     margin: 0.5rem auto;
-    border-radius: 2px;
+    border-radius: 1px;
 }
 
-/* Lists */
+/* Lists - Clean, with subtle left borders for visual separation */
 .list {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 1rem 0;
 }
 
 .list li {
-    background: linear-gradient(90deg, #e8f5e8, #f0f8f0);
-    margin-bottom: 0.8rem;
+    background: var(--bg-transparent);
+    /* Transparent for clean look */
+    margin: 0.75rem 0;
     padding: 1rem;
-    border-left: 4px solid #4CAF50;
-    border-radius: 0 8px 8px 0;
-    transition: background 0.3s ease;
+    border-left: 3px solid var(--primary-cool-green);
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
 .list li:hover {
-    background: linear-gradient(90deg, #d4edda, #e2f0e2);
+    background: var(--light-cool-mint);
+    padding-left: 1.25rem;
+    border-left-width: 4px;
 }
 
 .orderedList {
-    list-style: none;
     counter-reset: step-counter;
-    padding-left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
 }
 
 .orderedList li {
     counter-increment: step-counter;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
+    background: var(--bg-transparent);
+    border-left: 3px solid var(--secondary-cool-green);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: var(--transition);
     position: relative;
-    padding-left: 3rem;
-    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
 }
 
 .orderedList li::before {
     content: counter(step-counter);
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: var(--secondary-cool-green);
+    color: var(--bg-light);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    line-height: 24px;
     font-weight: bold;
-    font-size: 0.9rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
 }
 
-/* Link Text and Links */
+.orderedList li:hover {
+    border-left-color: var(--primary-cool-green);
+    background: var(--light-cool-mint);
+    padding-left: 1.25rem;
+}
+
+/* Link Text and Links - Cold blue/gray tones for buttons/links, subtle hover */
 .linkText {
     font-size: 1.1rem;
     text-align: center;
     margin-top: 1rem;
-    color: #555;
+    color: var(--text-light);
 }
 
 .link {
-    color: #4CAF50;
+    color: var(--accent-cool-blue);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-    border-bottom: 2px solid transparent;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-cool-blue);
+    border-radius: 4px;
+    background: var(--bg-transparent);
+    transition: var(--transition);
+    position: relative;
+    display: inline-block;
+    margin: 0.25rem;
 }
 
 .link:hover {
-    color: #45a049;
-    text-decoration: underline;
-    border-bottom-color: #4CAF50;
+    background: var(--accent-cool-blue);
+    color: var(--bg-light);
+    text-decoration: none;
+    box-shadow: var(--shadow-subtle);
+    transform: translateY(-1px);
 }
 
-/* Table */
+.link:active {
+    background: var(--accent-cool-gray);
+    border-color: var(--accent-cool-gray);
+}
+
+.link::after {
+    content: ' →';
+    opacity: 0;
+    margin-left: 0.5rem;
+    transition: var(--transition);
+}
+
+.link:hover::after {
+    opacity: 1;
+}
+
+/* Table - Clean, professional with cool header and subtle rows */
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
-    background: white;
-    border-radius: 8px;
+    margin: 1rem 0;
+    background: var(--bg-light);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-subtle);
+    font-size: 0.95rem;
 }
 
 .table th,
 .table td {
     padding: 1rem;
     text-align: left;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .table th {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
+    background: var(--primary-cool-green);
+    color: var(--bg-light);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.9rem;
     letter-spacing: 0.5px;
 }
 
 .table tbody tr {
-    transition: background 0.3s ease;
-}
-
-.table tbody tr:nth-child(even) {
-    background: #f8f9fa;
+    transition: var(--transition);
 }
 
 .table tbody tr:hover {
-    background: #e8f5e8;
-    transform: scale(1.01);
+    background: var(--light-cool-mint);
 }
 
-.table td {
-    font-size: 0.95rem;
+.table tbody tr:nth-child(even) {
+    background: #FAFBFC;
+    /* Very subtle cool tint */
 }
 
-/* Card Grid */
+.table tbody tr:hover:nth-child(even) {
+    background: var(--light-cool-mint);
+}
+
+/* Card Grid for Success Stories - Transparent and clean cards */
 .cardGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
-/* Cards */
 .card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-radius: 12px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
     padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e9ecef;
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
@@ -206,41 +273,43 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    height: 3px;
+    background: var(--primary-cool-green);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-cool-green);
+    transform: translateY(-2px);
 }
 
 .cardTitle {
-    font-size: 1.4rem;
-    color: #2c5530;
+    color: var(--primary-cool-green);
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    font-weight: 600;
+    text-align: center;
 }
 
 .card p {
-    margin-bottom: 0.5rem;
-    color: #555;
-    font-size: 0.95rem;
+    margin: 0.5rem 0;
+    color: var(--text-dark);
+    font-size: 1rem;
 }
 
 .quote {
     font-style: italic;
-    color: #4CAF50;
-    border-left: 3px solid #4CAF50;
+    color: var(--text-light);
+    border-left: 3px solid var(--secondary-cool-green);
     padding-left: 1rem;
     margin-top: 1rem;
-    font-size: 1rem;
-    background: #f0f8f0;
+    font-size: 1.1rem;
+    background: #FAFBFC;
+    /* Subtle cool background */
     padding: 1rem;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 4px 4px 0;
 }
 
-/* Responsive Design */
+/* Responsive Design - Ensures clean UI on all devices */
 @media (max-width: 768px) {
     .container {
         padding: 1rem 0.5rem;
@@ -248,20 +317,62 @@ body {
 
     .section {
         padding: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .heading {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .table {
         font-size: 0.85rem;
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
     }
 
+    .table thead,
+    .table tbody,
     .table th,
-    .table td {
-        padding: 0.75rem 0.5rem;
+    .table td,
+    .table tr {
+        display: block;
     }
+
+    .table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .table tr {
+        border: 1px solid var(--border-subtle);
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius);
+        background: var(--bg-light);
+    }
+
+    .table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .table td:before {
+        content: attr(data-label) ": ";
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: var(--primary-cool-green);
+    }
+
+    /* Reminder: In JSX, add data-label to <td> elements for mobile, e.g., <td data-label="Crop">{crop.name}</td> */
 
     .cardGrid {
         grid-template-columns: 1fr;
@@ -269,38 +380,39 @@ body {
     }
 
     .orderedList li {
-        padding-left: 2.5rem;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .orderedList li::before {
-        left: 0.5rem;
-        width: 25px;
-        height: 25px;
-        font-size: 0.8rem;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        align-self: flex-start;
     }
 }
 
 @media (max-width: 480px) {
-    .table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
     .heading {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
-    .section {
-        padding: 1rem;
+    .list li,
+    .orderedList li {
+        padding: 0.75rem;
+    }
+
+    .link {
+        display: block;
+        text-align: center;
+        margin: 0.5rem 0;
     }
 }
 
-/* Animations */
+/* Subtle entrance animation for smooth loading */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
 
     to {
@@ -310,34 +422,16 @@ body {
 }
 
 .section {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.5s ease-out;
 }
 
-/* Subtle scroll animation for lists and cards */
+/* Additional subtle animations for interactivity */
 .list li,
 .orderedList li,
 .card {
-    animation: fadeInUp 0.4s ease-out forwards;
-    opacity: 0;
-    animation-delay: 0.1s;
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.list li:nth-child(1),
-.orderedList li:nth-child(1),
-.card:nth-child(1) {
-    animation-delay: 0.2s;
+.list li:nth-child(n) {
+    animation-delay: calc(0.1s * var(--n));
 }
-
-.list li:nth-child(2),
-.orderedList li:nth-child(2),
-.card:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.list li:nth-child(3),
-.orderedList li:nth-child(3),
-.card:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-/* Extend as needed for more items */

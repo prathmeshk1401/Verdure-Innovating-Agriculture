@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css"
-
+import "./Navbar.css"
+import verdure from "../../assets/VERDURE-logo.png"
 const Navbar = () => {
     return (
         <nav>
             <div className='navContainer'>
-                <Link to="/" className='logo'>
-                    <img src="/VERDURE-logo.png" alt="Logo" id="logo" />
-                </Link>
+                
+                    <img src={verdure} alt="Logo" id="logo" className='logo' />
+                
             </div>
         </nav>
     )

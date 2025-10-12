@@ -56,9 +56,9 @@ p {
 
 /* Container */
 .community-messages {
-    max-width: 1100px;
+    max-width: 1200px;
     height: 92vh;
-    width: 80%;
+    width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
     color: #222;
@@ -73,7 +73,7 @@ p {
 }
 
 .chat-sidebar {
-    width: 30%;
+    width: 35%;
     border-left: 2px solid #ddd;
     border-radius: 12px;
     display: flex;

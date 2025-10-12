@@ -1,81 +1,19 @@
-:root {
-    --primary-color: #045d1f;
-    --secondary-color: #aeccb8;
-    --background-color: #d7dbd9;
-    --text-color: #000000;
-    --light-text-color: #131212;
-    --card-bg: #fff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-radius: 12px;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-color);
-    scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
-    color: #0d0e0d;
-    text-shadow: 0 0 20px #e1e1e1;
-}
-
-button {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-}
-
-input,
-textarea {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    /* Regular */
-}
-
-p {
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-button{
-    background-color: var(--primary-color);
-    color: #fff;
-    border: 2px solid var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all .25s ease;
-}
-
 .farmer-forum {
     max-width: 1100px;
+    width: 1100px;
     margin: 2rem auto;
     padding: 1.5rem;
     background: transparent;
-    border-radius: var(--border-radius);
+    border-radius: 20px;
     border: 2px solid #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 2rem;
     position: relative;
-    left: 10%;
+    left: 15%;
+    overflow-y: auto;
+    height: 92vh;
 }
 
 .farmer-forum h1 {
@@ -84,7 +22,6 @@ button{
     margin-bottom: 8px;
     color: var(--primary-color);
 }
-
 
 header p {
     text-align: center;
@@ -95,9 +32,66 @@ header p {
 
 .button-container {
     align-self: center;
-    display:inline;
+    display: inline;
     position: relative;
     left: 32%;
+    align-items: center;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all .25s ease;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #e1e1e1;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 93, 31, 0.3);
+}
+
+.btnPrimary {
+    margin-right: 20px;
+}
+
+.btnSecondary {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    
+}
+
+.btnSecondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1rem;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(244, 67, 54, 0.2);
+    text-align: center;
+}
+
+.errorContainer h3 {
+    color: #d32f2f;
+    margin-bottom: 1rem;
 }
 
 .forum-container,
@@ -109,13 +103,8 @@ header p {
     margin: 0 auto;
 }
 
-.button-container {
-    align-items: center;
-}
-
 .container,
 .forum-container {
-    /* margin-top: 40px; */
     padding: 30px;
     background: transparent;
     border: 1px solid #fff;
@@ -124,7 +113,7 @@ header p {
 
 .forum-categories h2,
 .forum-statistics h2,
-.discussion h2 {
+.discussions h2 {
     font-size: clamp(1.2rem, 2.4vw, 2rem);
     color: #1c3819;
     margin-bottom: 16px;
@@ -134,7 +123,6 @@ header p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
-
 }
 
 .category-box {
@@ -178,7 +166,7 @@ header p {
     background-color: #fff8dc;
 }
 
-.category-box h3, .farmer-vendor h3 {
+.category-box h3 {
     font-size: 1.15rem;
     margin-bottom: 6px;
 }
@@ -197,7 +185,7 @@ header p {
     margin: 0 auto;
 }
 
-.discussions h2, .farmer-vendor h2 {
+.discussions h2 {
     font-size: clamp(1.2rem, 2.4vw, 2rem);
     margin-bottom: 14px;
     padding-left: 4px;
@@ -241,12 +229,43 @@ header p {
     margin-bottom: 10px;
 }
 
-.farmer-vendor .container{
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.textCenter {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+.farmer-vendor .container {
     margin: 0 auto;
     width: 96%;
 }
 
-.vendor-card, .vendor-chat-window {
+.farmer-vendor h2 {
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    margin-bottom: 14px;
+    padding-left: 4px;
+    color: #1c3819;
+}
+
+.vendor-chat-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.vendor-card {
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
@@ -254,21 +273,104 @@ header p {
     background-color: transparent;
     margin: 10px;
     border: 2px solid #fff;
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
 }
 
-.vendor-card:hover, .vendor-chat-window:hover {
+.vendor-card:hover {
     transform: translateY(-4px);
     background-color: #a6a7a6;
 }
 
-.received {
-    margin-bottom: 10px;
+.startChatButton {
+    margin-top: 1rem;
+    width: 100%;
 }
 
+.vendor-chat-window {
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: transform .2s, background-color .25s;
+    background-color: transparent;
+    margin: 10px;
+    border: 2px solid #fff;
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
 
-.icon {
-    height: 30px;
-    width: 30px;
+.vendor-chat-window:hover {
+    transform: translateY(-4px);
+    background-color: #a6a7a6;
+}
+
+.vendor-chat-window h3 {
+    margin-bottom: 1rem;
+    color: #1c3819;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    max-height: 300px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 18px;
+    max-width: 80%;
+}
+
+.received {
+    background: #e3f2fd;
+    margin-left: auto;
+    text-align: right;
+    color: #1976d2;
+}
+
+.sent {
+    background: #c8e6c9;
+    margin-right: auto;
+    color: #2e7d32;
+}
+
+.message p {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.message span {
+    font-size: 0.8rem;
+    color: #666;
+    opacity: 0.7;
+}
+
+.chat-input {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chatInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+.sendButton {
+    composes: btn;
+    padding: 10px 20px;
+    white-space: nowrap;
 }
 
 .forum-statistics {
@@ -296,16 +398,21 @@ header p {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     gap: 14px;
     background-color: #fff;
+    transition: all .25s ease;
 }
 
 .stat-card:hover {
-    transition: .25s ease;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(14, 80, 59, 0.18);
 }
 
 .icon-wrap {
     font-size: 1.4rem;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
 }
 
 .text-group .label {
@@ -335,4 +442,92 @@ header p {
 
 .blue-text {
     color: #2451d5;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.select {
+    cursor: pointer;
+}
+
+.modalButtons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.modalButtons .btn {
+    flex: 1;
+    min-width: auto;
 }

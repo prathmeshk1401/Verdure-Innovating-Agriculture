@@ -5,12 +5,15 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import N8NChat from './n8nChat';
+
 // Public pages
 import Hero from './pages/Hero';
 import About from './pages/About';
 import Services from './pages/Services';
 import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
+
 
 // Auth
 import Login from './components/Login/Login';
@@ -59,6 +62,7 @@ function MainSections() {
       <div id="services"><Services /></div>
       <div id="testimonials"><Testimonials /></div>
       <div id="contact"><Contact /></div>
+      
       <Footer />
     </>
   );
@@ -77,6 +81,9 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
+      <div>
+      <N8NChat />
+    </div>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<MainSections />} />

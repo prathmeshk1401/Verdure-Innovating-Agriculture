@@ -1,40 +1,22 @@
-.logo img {
-    width: 125px;
+.logo  img{
+    width: 25px;
     height: auto;
     display: block;
-    margin: 0 auto 32px auto;
+    margin-bottom: 50%;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-:root {
-    --primary-color: #034f1a;
-    --secondary-color: #e1e1e1;
-    --light-color: #aeccb8;
-    --text-color: #333;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-bg: #a8f0bc;
-}
-
-body {
-    font-family: "Inter", sans-serif;
-    background: var(--secondary-color);
-    color: var(--text-color);
-    line-height: 1.6;
-}
 
 .sidebarContainer {
+    backdrop-filter: blur(10px);
     height: 92%;
     width: 20%;
-    position: fixed;
+    position: fixed !important;
     border: 2px solid #fff;
     box-shadow: 0 4px 12px var(--shadow-color);
     border-radius: 20px;
     left: 20px;
+    top: 30px;
     background: transparent;
     padding: 20px;
     display: flex;
@@ -46,6 +28,24 @@ body {
     font-weight: 600;
     font-size: 18px;
     font-family: "Inter", sans-serif;
+    animation: fadeIn 0.5s ease;
+}
+
+/* .menuContainer{
+    position: relative;
+    top: 60px;
+} */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .menuContainer {
@@ -80,7 +80,7 @@ body {
     height: 30px;
 }
 
-.servicesHeader{
+.servicesHeader {
     position: relative;
     top: 0;
 }
@@ -114,9 +114,11 @@ body {
     gap: 10px;
 }
 
-.communityLink, .accountsLink, .services{
+.communityLink,
+.accountsLink,
+.services {
     position: relative;
-    left: 15%; 
+    left: 15%;
 }
 
 .logout {

@@ -65,8 +65,12 @@ p {
     grid-template-rows: auto 1fr;
     gap: 2rem;
     position: relative;
-    left: 10%;
-    border: 2px solid #fff;
+    left: 15%;
+    border: 2px solid #fff;  
+    overflow-y: auto;
+    height: 92vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .inputBox input {

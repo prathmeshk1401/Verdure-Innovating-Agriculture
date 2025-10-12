@@ -69,7 +69,11 @@ p {
     grid-template-rows: auto 1fr;
     gap: 2rem;
     position: relative;
-    left: 10%;
+    left: 15%;
+    overflow-y: auto;
+    height: 92vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .newCropHarvestHeader {
