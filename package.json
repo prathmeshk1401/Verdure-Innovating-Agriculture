@@ -1,7 +1,7 @@
 {
   "name": "verdure-frontend",
   "version": "0.1.0",
-  "homepage": "https://prathmeshk1401.github.io/Verdure-Innovating-Agriculture",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
