@@ -46,16 +46,14 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* Logo Centered
 #logo {
-    height: 70px;
+    /* height: 70px; */
     width: auto;
     margin-bottom: 12px;
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.3s ease;
+    position: relative;
+    top: -4.5%;
+    margin: 0;
 }
-
-#logo:hover {
-    transform: scale(1.08); 
-}*/
