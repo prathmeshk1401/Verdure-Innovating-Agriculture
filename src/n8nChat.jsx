@@ -19,7 +19,7 @@ const N8nChat = () => {
                 if (typeof createChat === 'function') {
                     createChat({
                         webhookUrl:
-                            'https://verdureofficial.app.n8n.cloud/webhook/36afc3e7-c761-466b-847d-a71bbcd9526f/chat',
+                            'https://prathmeshk1401.app.n8n.cloud/webhook/a889d2ae-2159-402f-b326-5f61e90f602e/chat',
                         title: 'Verdure AI',
                     });
                 }
@@ -27,7 +27,7 @@ const N8nChat = () => {
             .catch((err) => {
                 // swallow or log runtime errors — don't crash the app
                 // eslint-disable-next-line no-console
-                console.error('Failed to load n8n chat module', err);
+                console.error('Failed to load chat module', err);
             });
 
         // cleanup not necessary for external script/css but keep safe removal if component unmounts

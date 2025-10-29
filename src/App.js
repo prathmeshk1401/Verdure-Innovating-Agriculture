@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/scrollToTop";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -50,6 +50,7 @@ import FarmerForum from './services/farmerForum';
 import CropTrade from './services/cropTrade';
 import AgroWeatherService from './services/agroWeather';
 import ServicesFooter from './components/servicesFooter';
+import PMFBY from './services/pmfby'
 
 import './assets/styles/App.css';
 
@@ -176,6 +177,9 @@ function AppContent() {
         {/* Services Routes */}
         <Route path="/disease-detect" element={<><Navbar /><DiseaseDetect /><ServicesFooter /></>} />
         <Route path="/cropCareReport" element={<><Navbar /><CropCareReport /><ServicesFooter /></>} />
+  {/* PMFBY routes (case-insensitive support) */}
+  <Route path="/Pmfby" element={<><Navbar /><PMFBY /><ServicesFooter /></>} />
+  <Route path="/pmfby" element={<><Navbar /><PMFBY /><ServicesFooter /></>} />
         <Route path="/harvestHintsMain" element={<><Navbar /><HarvestHintsMain /><ServicesFooter /></>} />
         <Route path="/harvest-hints/:crop" element={<><Navbar /><HarvestHintsNext /><ServicesFooter /></>} />
         <Route path="/newCropHarvest" element={<><Navbar /><NewCropHarvest /><ServicesFooter /></>} />

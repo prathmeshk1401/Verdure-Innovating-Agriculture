@@ -1,0 +1,188 @@
+/* General container with gradient background */
+.container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #d4edda, #cce7ff);
+    padding: 1.5rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d5016;
+}
+
+.header p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+/* Main grid layout: 1 column on mobile, 3 on desktop */
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .gridContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card styles for each feature section */
+.card {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d5016;
+    margin-bottom: 1rem;
+}
+
+/* Input styles */
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.fileInput {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Image preview */
+.imagePreview {
+    margin-top: 1rem;
+}
+
+.imagePreview img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* Button styles */
+.button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.buttonPrimary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.buttonPrimary:hover {
+    background-color: #1d4ed8;
+}
+
+.buttonSecondary {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.buttonSecondary:hover {
+    background-color: #b91c1c;
+}
+
+.buttonConfirm {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.buttonConfirm:hover {
+    background-color: #059669;
+}
+
+/* Analysis result box */
+.analysisResult {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+}
+
+.analysisResult p {
+    margin: 0.5rem 0;
+}
+
+/* Span 2 columns on desktop for the report section */
+.spanTwo {
+    grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+    .spanTwo {
+        grid-column: span 2;
+    }
+}
+
+/* Popup overlay */
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.popup {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    max-width: 24rem;
+    width: 100%;
+    margin: 0 1rem;
+}
+
+.popup h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2d5016;
+    margin-bottom: 1rem;
+}
+
+.popup p {
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+/* Text styles */
+.textSmall {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}

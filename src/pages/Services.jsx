@@ -18,6 +18,13 @@ const services = [
         desc: "Get expert help with soil, pests, and diseases.",
     },
     {
+        to: "/pmfby",
+        img: "pmfby.jpg",
+        alt: "PMFBY crop damage reporting",
+        title: "Pradhan Mantri Fasal Bima Yojana",
+        desc: "Upload crop damage and generate insurance-ready reports.",
+    },
+    {
         to: "/harvestHintsMain",
         img: "harvestHints.jpg",
         alt: "Personalized farming solutions",
