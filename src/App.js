@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import ProtectedRoute from './components/ProtectedRoute';
 
-import N8NChat from './n8nChat';
 
 // Public pages
 import Hero from './pages/Hero';
@@ -82,9 +81,6 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
-      <div>
-      <N8NChat />
-    </div>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<MainSections />} />
