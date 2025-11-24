@@ -62,6 +62,8 @@ p {
     position: relative;
     left: 10%;
     border: 2px solid#fff;
+    overflow-y: auto;
+    height: 92vh;
 }
 
 .weatherHeader h2 {

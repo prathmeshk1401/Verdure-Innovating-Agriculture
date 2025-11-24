@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import styles from "./cropManage.module.css";
 import cropManagementIcon from "../../assets/icons/cropManagement.png";
@@ -9,6 +9,7 @@ const CropManagement = () => {
     const [error, setError] = useState("");
     const [showAddModal, setShowAddModal] = useState(false);
     const [showDetails, setShowDetails] = useState(null);
+
     const [newCrop, setNewCrop] = useState({
         name: "",
         soil: "",
@@ -19,40 +20,52 @@ const CropManagement = () => {
 
     const token = localStorage.getItem("verdure_token");
 
-    // Fetch crops from API
-    const fetchCrops = async () => {
+    // ---------------- FETCH CROPS ----------------
+    const fetchCrops = useCallback(async () => {
         try {
             setLoading(true);
+
             const res = await axios.get("/api/crop", {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            console.log("API response => ", res.data);
+            console.log("API response =>", res.data);
 
-            // FIX: handle both array or object formats
-            const result = res.data.data || res.data;
+            const result = res.data?.data || res.data;
 
-            setCrops(Array.isArray(result) ? result : []);
+            if (!Array.isArray(result)) {
+                console.warn("CROP API returned non-array:", result);
+                setCrops([]); 
+                return;
+            }
+
+            setCrops(result);
+
         } catch (err) {
             setError("Failed to load crops. Please try again.");
-            console.error("Fetch error: ", err);
+            console.error("Fetch error:", err);
+            setCrops([]);
         } finally {
             setLoading(false);
         }
-    };
+    }, [token]);
 
-    // Add new crop
+    // Run fetch ONCE when page loads
+    useEffect(() => {
+        fetchCrops();
+    }, [fetchCrops]);
+
+    // ---------------- ADD CROP ----------------
     const handleAddCrop = async () => {
         try {
             if (!newCrop.name) return;
 
-            const cropData = { ...newCrop };
-
-            await axios.post("/api/crop", cropData, {
+            await axios.post("/api/crop", newCrop, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
             await fetchCrops();
+            setShowAddModal(false);
 
             setNewCrop({
                 name: "",
@@ -62,16 +75,13 @@ const CropManagement = () => {
                 nextTask: ""
             });
 
-            // FIX: close modal instead of opening again
-            setShowAddModal(false);
-
         } catch (err) {
             setError("Failed to add crop. Please try again.");
-            console.error("Add error: ", err);
+            console.error("Add error:", err);
         }
     };
 
-    // Delete crop
+    // ---------------- DELETE CROP ----------------
     const handleDeleteCrop = async (cropId) => {
         if (!window.confirm("Are you sure you want to delete this crop?")) return;
 
@@ -81,17 +91,13 @@ const CropManagement = () => {
             });
 
             await fetchCrops();
-
         } catch (err) {
             setError("Failed to delete crop. Please try again.");
-            console.error("Delete error: ", err);
+            console.error("Delete error:", err);
         }
     };
 
-    useEffect(() => {
-        fetchCrops();
-    }, [token, fetchCrops]);
-
+    // ---------------- RENDER ----------------
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
@@ -115,12 +121,13 @@ const CropManagement = () => {
     return (
         <div className={styles.container}>
 
-            {/* Header */}
+            {/* HEADER */}
             <div className={styles.headerContainer}>
                 <h1>
                     <img src={cropManagementIcon} alt="crop management" />
                     Crop Management
                 </h1>
+
                 <button
                     onClick={() => setShowAddModal(true)}
                     className={styles.btn}
@@ -129,90 +136,69 @@ const CropManagement = () => {
                 </button>
             </div>
 
-            {/* Add Crop Modal */}
+            {/* ADD CROP MODAL */}
             {showAddModal && (
                 <div className={styles.cropInputContainer}>
                     <div className={styles.cropContainer}>
                         <h2>Register a Fresh Crop</h2>
 
-                        <input
-                            type="text"
-                            placeholder="Crop Name"
+                        <input type="text" placeholder="Crop Name"
                             value={newCrop.name}
                             onChange={(e) => setNewCrop({ ...newCrop, name: e.target.value })}
                         />
 
-                        <input
-                            type="text"
-                            placeholder="Soil Type"
+                        <input type="text" placeholder="Soil Type"
                             value={newCrop.soil}
                             onChange={(e) => setNewCrop({ ...newCrop, soil: e.target.value })}
                         />
 
-                        <input
-                            type="text"
-                            placeholder="Stage"
+                        <input type="text" placeholder="Stage"
                             value={newCrop.stage}
                             onChange={(e) => setNewCrop({ ...newCrop, stage: e.target.value })}
                         />
 
-                        <input
-                            type="text"
-                            placeholder="Last Activity"
+                        <input type="text" placeholder="Last Activity"
                             value={newCrop.lastActivity}
                             onChange={(e) => setNewCrop({ ...newCrop, lastActivity: e.target.value })}
                         />
 
-                        <input
-                            type="text"
-                            placeholder="Next Task"
+                        <input type="text" placeholder="Next Task"
                             value={newCrop.nextTask}
                             onChange={(e) => setNewCrop({ ...newCrop, nextTask: e.target.value })}
                         />
 
                         <div className={styles.btnContainer}>
-                            <button onClick={handleAddCrop} className={styles.btn}>
-                                Add
-                            </button>
-                            <button onClick={() => setShowAddModal(false)} className={styles.btn}>
-                                Cancel
-                            </button>
+                            <button onClick={handleAddCrop} className={styles.btn}>Add</button>
+                            <button onClick={() => setShowAddModal(false)} className={styles.btn}>Cancel</button>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Crop Cards Grid */}
+            {/* CROP CARDS GRID */}
             <div className={styles.cardContainer}>
-                {crops.map((crop) => (
-                    <div key={crop._id} className={styles.card}>
-                        <h3>🌾 {crop.name}</h3>
-                        <p>Soil: {crop.soil}</p>
-                        <p>Stage: {crop.stage}</p>
-                        <p>Last Activity: {crop.lastActivity}</p>
-                        <p>Next Task: {crop.nextTask}</p>
+                {Array.isArray(crops) && crops.length > 0 ? (
+                    crops.map((crop) => (
+                        <div key={crop._id} className={styles.card}>
+                            <h3>🌾 {crop.name}</h3>
+                            <p>Soil: {crop.soil}</p>
+                            <p>Stage: {crop.stage}</p>
+                            <p>Last Activity: {crop.lastActivity}</p>
+                            <p>Next Task: {crop.nextTask}</p>
 
-                        <div className={styles.btnContainer}>
-                            <button onClick={() => setShowDetails(crop)} className={styles.btn}>
-                                View Details
-                            </button>
-
-                            <button className={styles.btn}>
-                                Edit
-                            </button>
-
-                            <button
-                                onClick={() => handleDeleteCrop(crop._id)}
-                                className={styles.btn}
-                            >
-                                Delete
-                            </button>
+                            <div className={styles.btnContainer}>
+                                <button onClick={() => setShowDetails(crop)} className={styles.btn}>View Details</button>
+                                <button className={styles.btn}>Edit</button>
+                                <button onClick={() => handleDeleteCrop(crop._id)} className={styles.btn}>Delete</button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p>No crops found.</p>
+                )}
             </div>
 
-            {/* Crop Details Modal */}
+            {/* DETAILS MODAL */}
             {showDetails && (
                 <div className={styles.cropDetailContainer}>
                     <div className={styles.cropContainer}>
@@ -233,12 +219,7 @@ const CropManagement = () => {
                         </div>
 
                         <div className={styles.btnContainer}>
-                            <button
-                                onClick={() => setShowDetails(null)}
-                                className={styles.btn}
-                            >
-                                Close
-                            </button>
+                            <button onClick={() => setShowDetails(null)} className={styles.btn}>Close</button>
                         </div>
                     </div>
                 </div>
