@@ -26,43 +26,52 @@ const CropManagement = () => {
             const res = await axios.get("/api/crop", {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            setCrops(res.data || []);
+
+            console.log("API response => ", res.data);
+
+            // FIX: handle both array or object formats
+            const result = res.data.data || res.data;
+
+            setCrops(Array.isArray(result) ? result : []);
         } catch (err) {
             setError("Failed to load crops. Please try again.");
-            console.error(err);
+            console.error("Fetch error: ", err);
         } finally {
             setLoading(false);
         }
     };
 
-    // Handle adding a new crop
+    // Add new crop
     const handleAddCrop = async () => {
         try {
             if (!newCrop.name) return;
 
-            const cropData = {
-                name: newCrop.name,
-                soil: newCrop.soil,
-                stage: newCrop.stage,
-                lastActivity: newCrop.lastActivity,
-                nextTask: newCrop.nextTask,
-            };
+            const cropData = { ...newCrop };
 
             await axios.post("/api/crop", cropData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            // Refresh crops list
             await fetchCrops();
-            setNewCrop({ name: "", soil: "", stage: "", lastActivity: "", nextTask: "" });
-            setShowAddModal(true);
+
+            setNewCrop({
+                name: "",
+                soil: "",
+                stage: "",
+                lastActivity: "",
+                nextTask: ""
+            });
+
+            // FIX: close modal instead of opening again
+            setShowAddModal(false);
+
         } catch (err) {
             setError("Failed to add crop. Please try again.");
-            console.error(err);
+            console.error("Add error: ", err);
         }
     };
 
-    // Handle deleting a crop
+    // Delete crop
     const handleDeleteCrop = async (cropId) => {
         if (!window.confirm("Are you sure you want to delete this crop?")) return;
 
@@ -70,16 +79,18 @@ const CropManagement = () => {
             await axios.delete(`/api/crop/${cropId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+
             await fetchCrops();
+
         } catch (err) {
             setError("Failed to delete crop. Please try again.");
-            console.error(err);
+            console.error("Delete error: ", err);
         }
     };
 
     useEffect(() => {
         fetchCrops();
-    }, [token]);
+    }, [token, fetchCrops]);
 
     if (loading) {
         return (
@@ -103,6 +114,7 @@ const CropManagement = () => {
 
     return (
         <div className={styles.container}>
+
             {/* Header */}
             <div className={styles.headerContainer}>
                 <h1>
@@ -122,47 +134,47 @@ const CropManagement = () => {
                 <div className={styles.cropInputContainer}>
                     <div className={styles.cropContainer}>
                         <h2>Register a Fresh Crop</h2>
+
                         <input
                             type="text"
                             placeholder="Crop Name"
                             value={newCrop.name}
                             onChange={(e) => setNewCrop({ ...newCrop, name: e.target.value })}
                         />
+
                         <input
                             type="text"
                             placeholder="Soil Type"
                             value={newCrop.soil}
                             onChange={(e) => setNewCrop({ ...newCrop, soil: e.target.value })}
                         />
+
                         <input
                             type="text"
                             placeholder="Stage"
                             value={newCrop.stage}
                             onChange={(e) => setNewCrop({ ...newCrop, stage: e.target.value })}
                         />
+
                         <input
                             type="text"
                             placeholder="Last Activity"
                             value={newCrop.lastActivity}
                             onChange={(e) => setNewCrop({ ...newCrop, lastActivity: e.target.value })}
                         />
+
                         <input
                             type="text"
                             placeholder="Next Task"
                             value={newCrop.nextTask}
                             onChange={(e) => setNewCrop({ ...newCrop, nextTask: e.target.value })}
                         />
+
                         <div className={styles.btnContainer}>
-                            <button
-                                onClick={handleAddCrop}
-                                className={styles.btn}
-                            >
+                            <button onClick={handleAddCrop} className={styles.btn}>
                                 Add
                             </button>
-                            <button
-                                onClick={() => setShowAddModal(false)}
-                                className={styles.btn}
-                            >
+                            <button onClick={() => setShowAddModal(false)} className={styles.btn}>
                                 Cancel
                             </button>
                         </div>
@@ -173,22 +185,24 @@ const CropManagement = () => {
             {/* Crop Cards Grid */}
             <div className={styles.cardContainer}>
                 {crops.map((crop) => (
-                    <div key={crop.id} className={styles.card}>
+                    <div key={crop._id} className={styles.card}>
                         <h3>🌾 {crop.name}</h3>
                         <p>Soil: {crop.soil}</p>
                         <p>Stage: {crop.stage}</p>
                         <p>Last Activity: {crop.lastActivity}</p>
                         <p>Next Task: {crop.nextTask}</p>
+
                         <div className={styles.btnContainer}>
-                            <button
-                                onClick={() => setShowDetails(crop)}
-                                className={styles.btn}
-                            >
+                            <button onClick={() => setShowDetails(crop)} className={styles.btn}>
                                 View Details
                             </button>
-                            <button className={styles.btn}>Edit</button>
+
+                            <button className={styles.btn}>
+                                Edit
+                            </button>
+
                             <button
-                                onClick={() => handleDeleteCrop(crop.id)}
+                                onClick={() => handleDeleteCrop(crop._id)}
                                 className={styles.btn}
                             >
                                 Delete
@@ -203,6 +217,7 @@ const CropManagement = () => {
                 <div className={styles.cropDetailContainer}>
                     <div className={styles.cropContainer}>
                         <h2>Crop Details: {showDetails.name}</h2>
+
                         <p><strong>Soil:</strong> {showDetails.soil}</p>
                         <p><strong>Stage:</strong> {showDetails.stage}</p>
                         <p><strong>Last Activity:</strong> {showDetails.lastActivity}</p>
@@ -228,6 +243,7 @@ const CropManagement = () => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };
